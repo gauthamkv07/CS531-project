@@ -1,3 +1,4 @@
+//cart structure
 struct cart{
     int itemId;
     char name[25];

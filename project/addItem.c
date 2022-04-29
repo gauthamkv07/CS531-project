@@ -3,25 +3,36 @@
 #include<stdlib.h>
 #include "shoppingCart.h"
 
-struct cart * addItem(int id, char* name, double price, int qty, struct cart *head){
+struct cart * addItem(int id, char name[25], double price, int qty, struct cart *head){
     if(head == NULL) {
         head = (struct cart *)malloc(sizeof(struct cart));
         head->itemId = id;
-        head->name[0] = *name;
-        head->price = price;
+        strcpy(head->name,name);
+        head->price = price*qty;
         head->qty = qty;
         head->next = NULL;
-        printf("whatever");
         return head;
     } else {
         struct cart *tail = head;
+        if(tail->itemId == id) {
+            tail->price += qty*price;
+            tail->qty += qty;
+            return head;
+        }
         while(tail->next != NULL) {
             tail = tail->next;
+            if(tail != NULL) {
+                if(tail->itemId == id) {
+                    tail->price += qty*price;
+                    tail->qty += qty;
+                    return head;
+                }
+            }
         }
         struct cart *temp = (struct cart *)malloc(sizeof(struct cart));
         temp->itemId = id;
-        temp->name[0] = *name;
-        temp->price = price;
+        strcpy(temp->name,name);
+        temp->price = price*qty;
         temp->qty = qty;
         temp->next = NULL;
         tail->next = temp;
