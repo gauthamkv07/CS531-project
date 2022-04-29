@@ -4,6 +4,8 @@
 
 double total = 0,tax = 0;
 
+void printBill(struct cart *head,double total,double tax);
+
 void shoppingCart(struct cart *head,struct cart *tail) {
     if(head == NULL) {
         printf("Cart is Empty\n");
@@ -22,5 +24,6 @@ void shoppingCart(struct cart *head,struct cart *tail) {
         total += total * 0.06;
         printf("tax :                                %.2f\n", tax);
         printf("total :                              %.2f\n", total);
+        printBill(head, total, tax);
     }
 }

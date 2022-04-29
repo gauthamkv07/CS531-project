@@ -1,0 +1,1 @@
+How to run: gcc main.c shoppingCart.c addItem.c printBill.c
