@@ -2,6 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include "structures.h"
+#include "shoppingCart.h"
+
+//function to display shopping cart
+void shoppingCart(struct cart *head,struct cart *tail);
+
+//function to add Item
+struct cart * addItem(int id, char* name, double price, int qty, struct cart *head);
 
 void printMenu() {
     printf("1.Admin\n");
@@ -11,6 +18,8 @@ void printMenu() {
 }
 
 void main() {
+    struct cart *head = NULL,*tail = NULL;
+
     int choice = 0;
     char buff[100];
     while(choice != 4) {
@@ -26,9 +35,14 @@ void main() {
                 printf("Search for products\n");
                 break;
             case 3:
-                printf("My Shopping Cart\n");
+                shoppingCart(head, tail);
                 break;
             case 4:
+                break;
+            case 5:
+                head = addItem(1,"firstItem",25.0,1,head);
+                head = addItem(2,"secondItem",35.0,2,head);
+                head = addItem(3,"thirdItem",45.0,1,head);
                 break;
             default:
                 printf("Not a valid input \n");
