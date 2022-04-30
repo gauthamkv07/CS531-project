@@ -9,7 +9,7 @@ void printBill(struct cart *head,double total,double tax) {
 
     struct cart *temp = head;
 
-        fprintf(fp,"                 CART                     \n");
+        fprintf(fp,"                 BILL                     \n");
         fprintf(fp,"id    name                     qty   price\n");
 
         while(temp!=NULL) {
@@ -18,6 +18,8 @@ void printBill(struct cart *head,double total,double tax) {
         }
         fprintf(fp,"tax :                                %.2f\n", tax);
         fprintf(fp,"total :                              %.2f\n", total);
+
+        fprintf(fp,"\n        *********THANK YOU*********");
 
     fclose(fp);
 }

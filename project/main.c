@@ -50,7 +50,7 @@ void main() {
                 head = addItem(3,"thirdItem",45.0,2,head);
                 break;
             default:
-                printf("Not a valid input \n");
+                printf("Not a valid option \n");
                 break;
         }
     }
