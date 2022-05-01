@@ -51,7 +51,7 @@ struct Watches
     float price;
 };
 
-struct refrigerators
+struct Refrigerators
 { 
     char brandName[25];
     char ModelNumber[25];
