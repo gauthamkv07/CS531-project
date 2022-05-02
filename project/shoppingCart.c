@@ -46,6 +46,7 @@ void shoppingCart(struct cart *head) {
                 printBill(head, total, tax);
                 total = 0; tax = 0;
                 head->itemId = -1;
+                printf("setting -1");
                 return;
             case 2:
                 break;
