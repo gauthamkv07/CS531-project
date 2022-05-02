@@ -4,6 +4,9 @@
 #include "mysql/include/mysql.h"
 #include "structures.h"
 #include "admin_menu.h"
+#include "shoppingCart.h"
+
+void shoppingCart(struct cart *head);
 
 void printMenu() {
     printf("------------------------------------\n");
@@ -68,6 +71,9 @@ unsigned int flag = 0;
 // begin of the main
 void main() {
     
+    //struct for cart
+    struct cart *head = NULL;
+
     // open sql connection
     MYSQL *conn; //The mysql_init() function allocates or initialises a MYSQL object suitable for mysql real_connect()
     conn = mysql_init(NULL); 
@@ -179,7 +185,7 @@ void main() {
                 printf("Search for products\n");
                 break;
             case 3:
-                printf("My Shopping Cart\n");
+                shoppingCart(head);
                 break;
             case 4:
                 break;
