@@ -5,6 +5,7 @@
 #include "structures.h"
 #include "admin_menu.h"
 
+//temp
 void printMenu() {
     printf("------------------------------------\n");
     printf("1.Admin\n");
