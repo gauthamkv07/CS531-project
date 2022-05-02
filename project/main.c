@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <mysql.h>
+#include "mysql/include/mysql.h"
 #include "structures.h"
 #include "admin_menu.h"
 
@@ -45,13 +45,6 @@ void print_product_menu(){
     printf("Enter your choice:");
 }
 
-// make connection
-void make_connection(MYSQL *conn){
-    if (!(mysql_real_connect(conn, host, user, pass,dbname,0,NULL,0))){
-        fprintf(stderr, "\nError %s [%d]\n", mysql_error(conn), mysql_errno(conn));
-        mysql_close(con);
-    }
-}
 // variables for db connections
 static char *host ="helios.vse.gmu.edu";
 static char *user ="wyuan5";
@@ -67,7 +60,11 @@ void main() {
     // open sql connection
     MYSQL *conn; //The mysql_init() function allocates or initialises a MYSQL object suitable for mysql real_connect()
     conn = mysql_init(NULL); 
-    make_connection(MYSQL *conn)
+
+    if (!(mysql_real_connect(conn, host, user, pass,dbname,0,NULL,0))){
+        fprintf(stderr, "\nError %s [%d]\n", mysql_error(conn), mysql_errno(conn));
+        mysql_close(conn);
+    }
 
     int choice = 0;
     int admin_choice = 0;
@@ -81,7 +78,7 @@ void main() {
         switch(choice) {
             case 1: 
                 while(admin_choice != 4) {
-                    printAdminMenu();
+                    print_admin_menu();
                     fgets(buff, 100, stdin);
                     admin_choice = atoi(buff);
                     switch(admin_choice){
@@ -89,21 +86,23 @@ void main() {
                             print_insert_menu();
                             fgets(buff, 100, stdin);
                             insert_delete_choice = atoi(buff);
-                            if(insert_delete_choice == 1){
+                            if(insert_delete_choice != 1 && insert_delete_choice != 2){
+                                printf("option out of range, please input 1 or 2");
+                                admin_choice = 0;
+                            }
+                            else if(insert_delete_choice == 1){
                                 print_product_menu();
                                 fgets(buff, 100, stdin);
                                 product_choice = atoi(buff);
+                                printf("\nchoice:%d\n",product_choice );
                                 create_table(conn, product_choice);
                             }
-                            if(insert_delete_choice == 2){
+                            else if(insert_delete_choice == 2){
                                 print_product_menu();
                                 fgets(buff, 100, stdin);
                                 product_choice = atoi(buff);
+                                printf("\nchoice:%d\n",product_choice );
                                 insert_record(conn, product_choice);
-                            }
-                            else{
-                                print("option out of range, please input 1 or 2");
-                                exit(1);
                             }
                             break;
 
@@ -111,21 +110,21 @@ void main() {
                             print_delete_menu();
                             fgets(buff, 100, stdin);
                             insert_delete_choice = atoi(buff);
-                            if(insert_delete_choice == 1){
+                            if(insert_delete_choice != 1 && insert_delete_choice != 2){
+                                printf("option out of range, please input 1 or 2");
+                                admin_choice = 0;
+                            }
+                            else if(insert_delete_choice == 1){
                                 print_product_menu();
                                 fgets(buff, 100, stdin);
                                 product_choice = atoi(buff);
                                 drop_table(conn, product_choice);
                             }
-                            if(insert_delete_choice == 2){
+                            else if(insert_delete_choice == 2){
                                 print_product_menu();
                                 fgets(buff, 100, stdin);
                                 product_choice = atoi(buff);
                                 printf("TODO:needs work.\n");
-                            }
-                            else{
-                                print("option out of range, please input 1 or 2");
-                                exit(1);
                             }
                             break;
 
@@ -134,14 +133,18 @@ void main() {
                             break;
 
                         case 4:
+                            
                             break;
 
                         default:
-                            print("option out of range, please input 1-4");
+                            printf("option out of range, please input 1-4");
                             break;
                     }
                 }
-
+                // need to reset both of the choices here
+                choice = 0;
+                admin_choice = 0;
+                printf("we are out of admin menu.\n");
                 break;
             case 2: 
                 printf("Search for products\n");

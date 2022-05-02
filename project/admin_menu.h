@@ -1,4 +1,4 @@
-#include <mysql.h>
+#include "mysql/include/mysql.h"
 void connection_error(MYSQL *conn);
 int create_table(MYSQL *conn, int option);
 int insert_record(MYSQL *conn, int option);

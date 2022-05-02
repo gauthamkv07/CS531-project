@@ -1,113 +1,117 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <mysql.h>
+#include "mysql/include/mysql.h"
 #include "structures.h"
 #include "admin_menu.h"
 
 void connection_error(MYSQL *conn)
 {
   fprintf(stderr, "%s\n", mysql_error(conn));
-  mysql_close(con);
 }
 
 int create_table(MYSQL *conn, int option){
     if(option<1 || option>5){
-        print("option out of range, please input 1-5");
+        printf("option out of range, please input 1-5");
         return -1;
     }
-    
+
     switch (option){
         //1 is laptop
         case 1 :
             // query returns 0 on success and 1 on fail
-            if (mysql_query(conn, "CREATE TABLE laptops(
-                id INT PRIMARY KEY AUTO_INCREMENT,
-                brandName VARCHAR(24), 
-                processorBrand VARCHAR(24), 
-                processorModel VARCHAR(24), 
-                graphicCardBrand VARCHAR(24), 
-                graphicCardModel VARCHAR(24), 
-                operatingSystem VARCHAR(24), 
-                RAM VARCHAR(24), 
-                storage VARCHAR(24), 
-                price DECIMAL)")) {
+            if (mysql_query(conn, "CREATE TABLE laptops(\
+                id INT PRIMARY KEY AUTO_INCREMENT,\
+                brandName VARCHAR(24),\
+                processorBrand VARCHAR(24),\
+                processorModel VARCHAR(24),\
+                graphicCardBrand VARCHAR(24),\
+                graphicCardModel VARCHAR(24),\
+                operatingSystem VARCHAR(24),\
+                RAM VARCHAR(24),\
+                storage VARCHAR(24),\
+                price DECIMAL);")) {
                 connection_error(conn);
                 return -1;
             }
+            printf("table created\n");
             break;
 
         // 2 is camera
         case 2 :
             // query returns 0 on success and 1 on fail
-            if (mysql_query(conn, "CREATE TABLE cameras(
-                id INT PRIMARY KEY AUTO_INCREMENT,
-                brandName VARCHAR(24), 
-                ModelNumber VARCHAR(24), 
-                cameraType VARCHAR(24), 
-                color VARCHAR(24), 
-                sensorType VARCHAR(24), 
-                sensorSize VARCHAR(24), 
-                effectivePixels VARCHAR(24), 
-                storage VARCHAR(24), 
-                width DECIMAL,
-                height DECIMAL,
-                depth DECIMAL,
-                price DECIMAL)")) {
+            if (mysql_query(conn, "CREATE TABLE cameras(\
+                id INT PRIMARY KEY AUTO_INCREMENT,\
+                brandName VARCHAR(24),\
+                ModelNumber VARCHAR(24),\
+                cameraType VARCHAR(24),\
+                color VARCHAR(24),\
+                sensorType VARCHAR(24),\
+                sensorSize VARCHAR(24),\
+                effectivePixels VARCHAR(24),\
+                storage VARCHAR(24),\
+                width DECIMAL,\
+                height DECIMAL,\
+                depth DECIMAL,\
+                price DECIMAL);")) {
                 connection_error(conn);
                 return -1;
             }
+            printf("table created\n");
             break;
 
         // 3 is phone
         case 3 :
             // query returns 0 on success and 1 on fail
-            if (mysql_query(conn, "CREATE TABLE phones(
-                id INT PRIMARY KEY AUTO_INCREMENT,
-                brandName VARCHAR(24), 
-                ModelNumber VARCHAR(24), 
-                storage VARCHAR(24), 
-                color VARCHAR(24),
-                width DECIMAL,
-                height DECIMAL,
-                price DECIMAL)")) {
+            if (mysql_query(conn, "CREATE TABLE phones(\
+                id INT PRIMARY KEY AUTO_INCREMENT,\
+                brandName VARCHAR(24),\
+                ModelNumber VARCHAR(24),\
+                storage VARCHAR(24),\
+                color VARCHAR(24),\
+                width DECIMAL,\
+                height DECIMAL,\
+                price DECIMAL);")) {
                 connection_error(conn);
                 return -1;
             }
+            printf("table created\n");
             break;
 
         // 4 is watch
         case 4 :
             // query returns 0 on success and 1 on fail
-            if (mysql_query(conn, "CREATE TABLE watches(
-                id INT PRIMARY KEY AUTO_INCREMENT,
-                brandName VARCHAR(24), 
-                ModelNumber VARCHAR(24), 
-                type VARCHAR(24), 
-                color VARCHAR(24),
-                weight DECIMAL,
-                price DECIMAL)")) {
+            if (mysql_query(conn, "CREATE TABLE watches(\
+                id INT PRIMARY KEY AUTO_INCREMENT,\
+                brandName VARCHAR(24),\
+                ModelNumber VARCHAR(24),\
+                type VARCHAR(24),\
+                color VARCHAR(24),\
+                weight DECIMAL,\
+                price DECIMAL);")) {
                 connection_error(conn);
                 return -1;
             }
+            printf("table created\n");
             break;
 
         // 5 is refrigerator
         case 5 :
             // query returns 0 on success and 1 on fail
-            if (mysql_query(conn, "CREATE TABLE refrigerators(
-                id INT PRIMARY KEY AUTO_INCREMENT,
-                brandName VARCHAR(24), 
-                ModelNumber VARCHAR(24), 
-                doorStyle VARCHAR(24), 
-                color VARCHAR(24),
-                width DECIMAL,
-                height DECIMAL,
-                depth DECIMAL,
-                price DECIMAL)")) {
+            if (mysql_query(conn, "CREATE TABLE refrigerators(\
+                id INT PRIMARY KEY AUTO_INCREMENT,\
+                brandName VARCHAR(24),\
+                ModelNumber VARCHAR(24),\
+                doorStyle VARCHAR(24),\
+                color VARCHAR(24),\
+                width DECIMAL,\
+                height DECIMAL,\
+                depth DECIMAL,\
+                price DECIMAL);")) {
                 connection_error(conn);
                 return -1;
             }
+            printf("table created\n");
             break;
     }   
     return 0;
@@ -115,7 +119,7 @@ int create_table(MYSQL *conn, int option){
 
 int insert_record(MYSQL *conn, int option){
     if(option<1 || option>5){
-        print("option out of range, please input 1-5");
+        printf("option out of range, please input 1-5");
         return -1;
     }
 
@@ -123,41 +127,41 @@ int insert_record(MYSQL *conn, int option){
         //1 is laptop
         case 1 :
             if(insert_laptop(conn)==-1){
-                printf("insert failed")
                 return -1;
             }
+            printf("record inserted.\n");
             break;
 
         // 2 is camera
         case 2 :
             if(insert_camera(conn)==-1){
-                printf("insert failed")
                 return -1;
             }
+            printf("record inserted.\n");
             break;
 
         // 3 is phone
         case 3 :
             if(insert_phone(conn)==-1){
-                printf("insert failed")
                 return -1;
             }
+            printf("record inserted.\n");
             break;
 
         // 4 is watch
         case 4 :
             if(insert_watch(conn)==-1){
-                printf("insert failed")
                 return -1;
             }
+            printf("record inserted.\n");
             break;
 
         // 5 is refrigerator
         case 5 :
             if(insert_refrigerator(conn)==-1){
-                printf("insert failed")
                 return -1;
             }
+            printf("record inserted.\n");
             break;
     }
 
@@ -167,7 +171,7 @@ int insert_record(MYSQL *conn, int option){
 int insert_laptop(MYSQL *conn){
     char buffer[25];
     char processing[30];
-    char querry[500] = "INSERT IGNORE INTO laptops VALUES(NULL"
+    char query[500] = "INSERT IGNORE INTO laptops VALUES(NULL";
     float temp;
 
     // ask user for the struct info
@@ -181,7 +185,7 @@ int insert_laptop(MYSQL *conn){
     strcat(processing, "'");
 	strcat(processing, buffer);
 	strcat(processing, "'");
-    strcat(querry,processing);
+    strcat(query,processing);
 
     printf("please input the processorBrand within 24 characters long: \n");
     // try to get an user input string 
@@ -193,7 +197,7 @@ int insert_laptop(MYSQL *conn){
     strcat(processing, "'");
 	strcat(processing, buffer);
 	strcat(processing, "'");
-    strcat(querry,processing);
+    strcat(query,processing);
 
 
     printf("please input the processorModel within 24 characters long: \n");
@@ -206,7 +210,7 @@ int insert_laptop(MYSQL *conn){
     strcat(processing, "'");
 	strcat(processing, buffer);
 	strcat(processing, "'");
-    strcat(querry,processing);
+    strcat(query,processing);
 
     printf("please input the graphicCardBrand within 24 characters long: \n");
     // try to get an user input string 
@@ -218,7 +222,7 @@ int insert_laptop(MYSQL *conn){
     strcat(processing, "'");
 	strcat(processing, buffer);
 	strcat(processing, "'");
-    strcat(querry,processing);
+    strcat(query,processing);
 
     printf("please input the graphicCardModel within 24 characters long: \n");
     // try to get an user input string 
@@ -230,7 +234,7 @@ int insert_laptop(MYSQL *conn){
     strcat(processing, "'");
 	strcat(processing, buffer);
 	strcat(processing, "'");
-    strcat(querry,processing);
+    strcat(query,processing);
 
     printf("please input the operatingSystem within 24 characters long: \n");
     // try to get an user input string 
@@ -242,7 +246,7 @@ int insert_laptop(MYSQL *conn){
     strcat(processing, "'");
 	strcat(processing, buffer);
 	strcat(processing, "'");
-    strcat(querry,processing);
+    strcat(query,processing);
 
     printf("please input the RAM like 16GB: \n");
     // try to get an user input string 
@@ -254,7 +258,7 @@ int insert_laptop(MYSQL *conn){
     strcat(processing, "'");
 	strcat(processing, buffer);
 	strcat(processing, "'");
-    strcat(querry,processing);
+    strcat(query,processing);
 
     printf("please input the storage like 500GB: \n");
     // try to get an user input string 
@@ -268,7 +272,7 @@ int insert_laptop(MYSQL *conn){
 	strcat(processing, "'");
   
     strcat(processing, ",");
-    strcat(querry,processing);
+    strcat(query,processing);
 
     printf("please input the price: \n");
     // try to get an user input string 
@@ -277,8 +281,8 @@ int insert_laptop(MYSQL *conn){
     // add , and the decimal
     processing[0] = '\0';
     sprintf(processing, "%f", temp);
-    strcat(querry,processing);
-    strcat(querry, ")");
+    strcat(query,processing);
+    strcat(query, ");");
 
     printf("query:%s\n", query);
 
@@ -421,7 +425,7 @@ int insert_camera(MYSQL *conn){
     processing[0] = '\0';
     sprintf(processing, "%f", temp);
     strcat(query,processing);
-    strcat(query, ")");
+    strcat(query, ");");
 
     printf("query:%s\n", query);
 
@@ -518,7 +522,7 @@ int insert_phone(MYSQL *conn){
     processing[0] = '\0';
     sprintf(processing, "%f", temp);
     strcat(query,processing);
-    strcat(query, ")");
+    strcat(query, ");");
 
     printf("query:%s\n", query);
 
@@ -605,7 +609,7 @@ int insert_watch(MYSQL *conn){
     processing[0] = '\0';
     sprintf(processing, "%f", temp);
     strcat(query,processing);
-    strcat(query, ")");
+    strcat(query, ");");
 
     printf("query:%s\n", query);
 
@@ -712,7 +716,7 @@ int insert_refrigerator(MYSQL *conn){
     processing[0] = '\0';
     sprintf(processing, "%f", temp);
     strcat(query,processing);
-    strcat(query, ")");
+    strcat(query, ");");
 
     printf("query:%s\n", query);
 
@@ -727,7 +731,7 @@ int insert_refrigerator(MYSQL *conn){
 
 int drop_table(MYSQL *conn, int option){
     if(option<1 || option>5){
-        print("option out of range, please input 1-5");
+        printf("option out of range, please input 1-5");
         return -1;
     }
 
@@ -735,47 +739,117 @@ int drop_table(MYSQL *conn, int option){
         //1 is laptop
         case 1 :
             // query returns 0 on success and 1 on fail
-            if (mysql_query(conn, "DROP TABLE IF EXISTS laptops")) {
+            if (mysql_query(conn, "DROP TABLE IF EXISTS laptops;")) {
                 connection_error(conn);
                 return -1;
             }
+            printf("table dropped.\n");
             break;
 
         // 2 is camera
         case 2 :
             // query returns 0 on success and 1 on fail
-            if (mysql_query(conn, "DROP TABLE IF EXISTS cameras")) {
+            if (mysql_query(conn, "DROP TABLE IF EXISTS cameras;")) {
                 connection_error(conn);
                 return -1;
             }
+            printf("table dropped.\n");
             break;
 
         // 3 is phone
         case 3 :
             // query returns 0 on success and 1 on fail
-            if (mysql_query(conn, "DROP TABLE IF EXISTS phones")) {
+            if (mysql_query(conn, "DROP TABLE IF EXISTS phones;")) {
                 connection_error(conn);
                 return -1;
             }
+            printf("table dropped.\n");
             break;
 
         // 4 is watch
         case 4 :
             // query returns 0 on success and 1 on fail
-            if (mysql_query(conn, "DROP TABLE IF EXISTS watches")) {
+            if (mysql_query(conn, "DROP TABLE IF EXISTS watches;")) {
                 connection_error(conn);
                 return -1;
             }
+            printf("table dropped.\n");
             break;
 
         // 5 is refrigerator
         case 5 :
             // query returns 0 on success and 1 on fail
-            if (mysql_query(conn, "DROP TABLE IF EXISTS refrigerators")) {
+            if (mysql_query(conn, "DROP TABLE IF EXISTS refrigerators;")) {
                 connection_error(conn);
                 return -1;
             }
+            printf("table dropped.\n");
             break;
     }   
+    return 0;
+}
+
+int drop_record(MYSQL *conn, int option, int id){
+
+    //used for query
+    char query[500];
+
+    if(option<1 || option>5){
+        printf("option out of range, please input 1-5");
+        return -1;
+    }
+
+    switch (option){
+        //1 is laptop
+        case 1 :
+            // build up query based on selected option
+            sprintf(query,"DELETE FROM laptops where id = (%d);",id);
+            if(mysql_query(conn,query)){
+                return -1;
+            }
+            printf("record deleted.\n");
+            break;
+
+        // 2 is camera
+        case 2 :
+            // build up query based on selected option
+            sprintf(query,"DELETE FROM cameras where id = (%d);",id);
+            if(mysql_query(conn,query)){
+                return -1;
+            }
+            printf("record deleted.\n");
+            break;
+
+        // 3 is phone
+        case 3 :
+            // build up query based on selected option
+            sprintf(query,"DELETE FROM phones where id = (%d);",id);
+            if(mysql_query(conn,query)){
+                return -1;
+            }
+            printf("record deleted.\n");
+            break;
+
+        // 4 is watch
+        case 4 :
+            // build up query based on selected option
+            sprintf(query,"DELETE FROM watches where id = (%d);",id);
+            if(mysql_query(conn,query)){
+                return -1;
+            }
+            printf("record deleted.\n");
+            break;
+
+        // 5 is refrigerator
+        case 5 :
+            // build up query based on selected option
+            sprintf(query,"DELETE FROM refrigerators where id = (%d);",id);
+            if(mysql_query(conn,query)){
+                return -1;
+            }
+            printf("record deleted.\n");
+            break;
+    }
+
     return 0;
 }
