@@ -336,6 +336,18 @@ int insert_camera(MYSQL *conn){
 	strcat(processing, "'");
     strcat(query,processing);
 
+    printf("please input the color within 24 characters long: \n");
+    // try to get an user input string 
+    scanf("%24s",buffer);
+    getchar();
+    // add ,' ' to the string
+    processing[0] = '\0';
+    strcat(processing, ",");
+    strcat(processing, "'");
+	strcat(processing, buffer);
+	strcat(processing, "'");
+    strcat(query,processing);
+
     printf("please input the sensorType (COMS, Live MOS) within 24 characters long: \n");
     // try to get an user input string 
     scanf("%24s",buffer);
@@ -868,5 +880,107 @@ void display_table(MYSQL *conn){
         }
         mysql_free_result(result);
     }
+    return;
+}
+
+void display_record(MYSQL *conn, int option){
+    if(option<1 || option>5){
+        printf("option out of range, please input 1-5");
+        return;
+    }
+    char query[500];
+    switch (option){
+        //1 is laptop
+        case 1 :
+            strcpy(query, "SELECT * FROM laptops");
+            display_helper(conn, query);
+            break;
+
+        // 2 is camera
+        case 2 :
+            strcpy(query, "SELECT * FROM cameras");
+            display_helper(conn, query);
+            break;
+
+        // 3 is phone
+        case 3 :
+            strcpy(query, "SELECT * FROM phones");
+            display_helper(conn, query);
+            break;
+
+        // 4 is watch
+        case 4 :
+            strcpy(query, "SELECT * FROM watches");
+            display_helper(conn, query);
+            break;
+
+        // 5 is refrigerator
+        case 5 :
+            strcpy(query, "SELECT * FROM refrigerators");
+            display_helper(conn, query);
+            break;
+    }
+
+    return;
+}
+
+void display_helper(MYSQL *conn, char * query){
+    if (mysql_query(conn, query)) {
+        connection_error(conn);
+    } 
+    else {
+        MYSQL_RES *result = mysql_store_result(conn);
+        if (!result) {
+            printf("Couldn't get results set: %s\n", mysql_error(conn));
+        } 
+        else {
+
+            // display field names
+            int num_fields = mysql_num_fields(result);
+            MYSQL_FIELD *field;
+            int i = 0;
+            while ((field = mysql_fetch_field(result)) != NULL ) {
+                printf("  %24s  |", field->name);
+            }
+            printf("\n");
+
+            //display records one by one
+            MYSQL_ROW row;
+            
+            // using a while loop for pagination of 5
+            int page_counter = 0;
+            char user_choice = 0;
+            while (1){
+                // read the records row by row and display
+                if((row = mysql_fetch_row(result)) != NULL){
+                    for(int i = 0; i < num_fields; i++){
+                        printf("  %24s  |", row[i] ? row[i] : "NULL");
+                    }
+                    printf("\n");
+                    page_counter += 1;
+                }
+                else{
+                    printf("All records displayed.\n");
+                    break;
+                }
+
+                // if page counter = 5, we need to ask user if they want to continue, if so, we reset the counter, else break
+                if(page_counter == 5){
+                    printf("Do you want to display the next 5 records? N for no, anything for yes.\n");
+                    scanf("%c", &user_choice);
+                    getchar();
+                    if(user_choice == 'N'){
+                        page_counter = 0;
+                        break;
+                    }
+                    else{
+                        page_counter = 0;
+                        continue;
+                    }
+                }
+            }
+        }
+    }
+
     return;
 }

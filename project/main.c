@@ -6,6 +6,7 @@
 #include "admin_menu.h"
 
 void printMenu() {
+    printf("------------------------------------\n");
     printf("1.Admin\n");
     printf("2.Search for Products\n");
     printf("3.My Shopping Cart\n");
@@ -15,6 +16,7 @@ void printMenu() {
 
 void print_admin_menu() {
     // display admin menu
+    printf("------------------------------------\n");
     printf("1.Insert Product Info\n");
     printf("2.Delete Product Info\n");
     printf("3.Display the list of products\n");
@@ -24,24 +26,28 @@ void print_admin_menu() {
 
 void print_insert_menu() {
     // display insert menu
+    printf("------------------------------------\n");
     printf("1.Insert Product Table\n");
     printf("2.Insert Product Item\n");
     printf("Enter your choice:");
 }
 
 void print_delete_menu() {
+    printf("------------------------------------\n");
     printf("1.Delete Product Table\n");
     printf("2.Delete Product Item\n");
     printf("Enter your choice:");
 }
 
 void print_display_menu() {
+    printf("------------------------------------\n");
     printf("1.Display All Product Tables\n");
-    printf("1.Display All Product Items\n");
+    printf("2.Display All Product Items\n");
     printf("Enter your choice:");
 }
 
 void print_product_menu(){
+    printf("------------------------------------\n");
     printf("1.Laptops\n");
     printf("2.Cameras\n");
     printf("3.Phones\n");
@@ -149,7 +155,10 @@ void main() {
                                 display_table(conn);
                             }
                             else if(insert_delete_choice == 2){
-                                printf("Needs work \n");
+                                print_product_menu();
+                                fgets(buff, 100, stdin);
+                                product_choice = atoi(buff);
+                                display_record(conn, product_choice);
                             }
                             break;
 
