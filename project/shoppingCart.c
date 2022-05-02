@@ -12,7 +12,7 @@ void printShoppingCartMenu() {
     printf("2.Go Back\n");
 }
 
-void shoppingCart(struct cart *head) {
+void shoppingCart(struct cart *head,struct cart *tail) {
     if(head == NULL || head->itemId == -1) {
         printf("Cart is Empty\n");
     } else {
