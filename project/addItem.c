@@ -5,7 +5,6 @@
 
 struct cart * addItem(int id, char name[25], double price, int qty, struct cart *head){
     if(head == NULL || head->itemId == -1) {
-        printf("whateverlol");
         head = (struct cart *)malloc(sizeof(struct cart));
         head->itemId = id;
         strcpy(head->name,name);
