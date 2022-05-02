@@ -284,8 +284,6 @@ int insert_laptop(MYSQL *conn){
     strcat(query,processing);
     strcat(query, ");");
 
-    printf("query:%s\n", query);
-
     // insert the record
     if (mysql_query(conn, query)) {
       connection_error(conn);
@@ -427,8 +425,6 @@ int insert_camera(MYSQL *conn){
     strcat(query,processing);
     strcat(query, ");");
 
-    printf("query:%s\n", query);
-
     // insert the record
     if (mysql_query(conn, query)) {
       connection_error(conn);
@@ -524,8 +520,6 @@ int insert_phone(MYSQL *conn){
     strcat(query,processing);
     strcat(query, ");");
 
-    printf("query:%s\n", query);
-
     // insert the record
     if (mysql_query(conn, query)) {
       connection_error(conn);
@@ -610,8 +604,6 @@ int insert_watch(MYSQL *conn){
     sprintf(processing, "%f", temp);
     strcat(query,processing);
     strcat(query, ");");
-
-    printf("query:%s\n", query);
 
     // insert the record
     if (mysql_query(conn, query)) {
@@ -718,8 +710,6 @@ int insert_refrigerator(MYSQL *conn){
     strcat(query,processing);
     strcat(query, ");");
 
-    printf("query:%s\n", query);
-
     // insert the record
     if (mysql_query(conn, query)) {
       connection_error(conn);
@@ -805,6 +795,7 @@ int drop_record(MYSQL *conn, int option, int id){
             // build up query based on selected option
             sprintf(query,"DELETE FROM laptops where id = (%d);",id);
             if(mysql_query(conn,query)){
+                connection_error(conn);
                 return -1;
             }
             printf("record deleted.\n");
@@ -815,6 +806,7 @@ int drop_record(MYSQL *conn, int option, int id){
             // build up query based on selected option
             sprintf(query,"DELETE FROM cameras where id = (%d);",id);
             if(mysql_query(conn,query)){
+                connection_error(conn);
                 return -1;
             }
             printf("record deleted.\n");
@@ -825,6 +817,7 @@ int drop_record(MYSQL *conn, int option, int id){
             // build up query based on selected option
             sprintf(query,"DELETE FROM phones where id = (%d);",id);
             if(mysql_query(conn,query)){
+                connection_error(conn);
                 return -1;
             }
             printf("record deleted.\n");
@@ -835,6 +828,7 @@ int drop_record(MYSQL *conn, int option, int id){
             // build up query based on selected option
             sprintf(query,"DELETE FROM watches where id = (%d);",id);
             if(mysql_query(conn,query)){
+                connection_error(conn);
                 return -1;
             }
             printf("record deleted.\n");
@@ -845,6 +839,7 @@ int drop_record(MYSQL *conn, int option, int id){
             // build up query based on selected option
             sprintf(query,"DELETE FROM refrigerators where id = (%d);",id);
             if(mysql_query(conn,query)){
+                connection_error(conn);
                 return -1;
             }
             printf("record deleted.\n");
@@ -852,4 +847,26 @@ int drop_record(MYSQL *conn, int option, int id){
     }
 
     return 0;
+}
+
+void display_table(MYSQL *conn){
+    MYSQL_RES *result = mysql_list_tables(conn, "%");
+
+    if (!result) {
+        
+        connection_error(conn);
+    } 
+    else {
+        MYSQL_ROW row = mysql_fetch_row(result);
+        if(!row){
+            printf("nothing to display, database is empty. \n\n");
+            return;
+        }
+        puts(row[0]);
+        while (row = mysql_fetch_row(result)) {
+            puts(row[0]);
+        }
+        mysql_free_result(result);
+    }
+    return;
 }

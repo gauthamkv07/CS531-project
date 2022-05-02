@@ -3,6 +3,7 @@
 
 struct Laptops
 { 
+    int id;
     char brandName[25];
     char processorBrand[25];
     char processorModel[25];
@@ -16,6 +17,7 @@ struct Laptops
 
 struct Cameras
 { 
+    int id;
     char brandName[25];
     char ModelNumber[25];
     char cameraType[25];
@@ -32,6 +34,7 @@ struct Cameras
 
 struct Phones
 { 
+    int id;
     char brandName[25];
     char ModelNumber[25];
     char storage[25];  // 125 GB
@@ -43,6 +46,7 @@ struct Phones
 
 struct Watches
 { 
+    int id;
     char brandName[25];
     char ModelNumber[25];
     char type[25];  // mechanical, quartz, automatical
@@ -53,6 +57,7 @@ struct Watches
 
 struct Refrigerators
 { 
+    int id;
     char brandName[25];
     char ModelNumber[25];
     char doorStyle[25];  // frech door, side-by-side

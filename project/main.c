@@ -18,7 +18,7 @@ void print_admin_menu() {
     printf("1.Insert Product Info\n");
     printf("2.Delete Product Info\n");
     printf("3.Display the list of products\n");
-    printf("4.Quit\n");
+    printf("4.Back to main menu\n");
     printf("Enter your choice:");
 }
 
@@ -30,9 +30,14 @@ void print_insert_menu() {
 }
 
 void print_delete_menu() {
-    // display insert menu
     printf("1.Delete Product Table\n");
     printf("2.Delete Product Item\n");
+    printf("Enter your choice:");
+}
+
+void print_display_menu() {
+    printf("1.Display All Product Tables\n");
+    printf("1.Display All Product Items\n");
     printf("Enter your choice:");
 }
 
@@ -70,6 +75,7 @@ void main() {
     int admin_choice = 0;
     int insert_delete_choice = 0;
     int product_choice = 0;
+    int product_id = 0;
     char buff[100];
     while(choice != 4) {
         printMenu();
@@ -87,7 +93,7 @@ void main() {
                             fgets(buff, 100, stdin);
                             insert_delete_choice = atoi(buff);
                             if(insert_delete_choice != 1 && insert_delete_choice != 2){
-                                printf("option out of range, please input 1 or 2");
+                                printf("option out of range, please input 1 or 2\n");
                                 admin_choice = 0;
                             }
                             else if(insert_delete_choice == 1){
@@ -111,7 +117,7 @@ void main() {
                             fgets(buff, 100, stdin);
                             insert_delete_choice = atoi(buff);
                             if(insert_delete_choice != 1 && insert_delete_choice != 2){
-                                printf("option out of range, please input 1 or 2");
+                                printf("option out of range, please input 1 or 2\n");
                                 admin_choice = 0;
                             }
                             else if(insert_delete_choice == 1){
@@ -124,12 +130,27 @@ void main() {
                                 print_product_menu();
                                 fgets(buff, 100, stdin);
                                 product_choice = atoi(buff);
-                                printf("TODO:needs work.\n");
+                                printf("Please input the id of the item you want to delete: \n");
+                                fgets(buff, 100, stdin);
+                                product_id = atoi(buff);
+                                drop_record(conn, product_choice, product_id);
                             }
                             break;
 
                         case 3:
-                            printf("TODO: needs work");
+                            print_display_menu();
+                            fgets(buff, 100, stdin);
+                            insert_delete_choice = atoi(buff);
+                            if(insert_delete_choice != 1 && insert_delete_choice != 2){
+                                printf("option out of range, please input 1 or 2\n");
+                                admin_choice = 0;
+                            }
+                            else if(insert_delete_choice == 1){
+                                display_table(conn);
+                            }
+                            else if(insert_delete_choice == 2){
+                                printf("Needs work \n");
+                            }
                             break;
 
                         case 4:
@@ -137,14 +158,13 @@ void main() {
                             break;
 
                         default:
-                            printf("option out of range, please input 1-4");
+                            printf("option out of range, please input 1-4\n");
                             break;
                     }
                 }
                 // need to reset both of the choices here
                 choice = 0;
                 admin_choice = 0;
-                printf("we are out of admin menu.\n");
                 break;
             case 2: 
                 printf("Search for products\n");

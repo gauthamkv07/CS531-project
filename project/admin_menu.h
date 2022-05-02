@@ -8,3 +8,5 @@ int insert_phone(MYSQL *conn);
 int insert_watch(MYSQL *conn);
 int insert_refrigerator(MYSQL *conn);
 int drop_table(MYSQL *conn, int option);
+int drop_record(MYSQL *conn, int option, int id);
+void display_table(MYSQL *conn);
