@@ -4,9 +4,7 @@
 #include "shoppingCart.h"
 
 struct cart * addItem(int id, char name[25], double price, int qty, struct cart *head){
-    printf("in addItem");
-    if(head == NULL) {
-        printf("in addItem head null");
+    if(head == NULL || head->itemId == -1) {
         head = (struct cart *)malloc(sizeof(struct cart));
         head->itemId = id;
         strcpy(head->name,name);
@@ -14,16 +12,7 @@ struct cart * addItem(int id, char name[25], double price, int qty, struct cart 
         head->qty = qty;
         head->next = NULL;
         return head;
-    } else if(head->itemId == -1){
-        printf("in addItem head -1");
-        head->itemId = id;
-        strcpy(head->name,name);
-        head->price = price*qty;
-        head->qty = qty;
-        head->next = NULL;
-        return head;
-    }else {
-        printf("in addItem tail");
+    } else {
         struct cart *tail = head;
         if(tail->itemId == id) {
             tail->price += qty*price;
