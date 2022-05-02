@@ -7,6 +7,7 @@
 #include "shoppingCart.h"
 
 void shoppingCart(struct cart *head);
+void addItem(int id, char name[25], double price, int qty, struct cart *head);
 
 void printMenu() {
     printf("------------------------------------\n");
@@ -189,6 +190,12 @@ void main() {
                 break;
             case 4:
                 break;
+            case 5:
+                addItem(1, "Dell", 25.0, 1, head);
+                addItem(1, "Dell", 25.0, 1, head);
+                addItem(2, "Sony", 35.0, 1, head);
+                addItem(2, "Sony", 35.0, 2, head);
+                addItem(3, "whatever", 45.0, 3, head);
             default:
                 printf("Not a valid input \n");
                 break;
