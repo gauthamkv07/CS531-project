@@ -196,6 +196,7 @@ void main() {
                 addItem(2, "Sony", 35.0, 1, head);
                 addItem(2, "Sony", 35.0, 2, head);
                 addItem(3, "whatever", 45.0, 3, head);
+                break;
             default:
                 printf("Not a valid input \n");
                 break;
