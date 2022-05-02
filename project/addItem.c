@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include "shoppingCart.h"
 
-void addItem(int id, char name[25], double price, int qty, struct cart *head){
+struct cart * addItem(int id, char name[25], double price, int qty, struct cart *head){
     if(head == NULL || head->itemId == -1) {
         head = (struct cart *)malloc(sizeof(struct cart));
         head->itemId = id;
@@ -11,12 +11,13 @@ void addItem(int id, char name[25], double price, int qty, struct cart *head){
         head->price = price*qty;
         head->qty = qty;
         head->next = NULL;
+        return head;
     } else {
         struct cart *tail = head;
         if(tail->itemId == id) {
             tail->price += qty*price;
             tail->qty += qty;
-            return;
+            return head;
         }
         while(tail->next != NULL) {
             tail = tail->next;
@@ -24,7 +25,7 @@ void addItem(int id, char name[25], double price, int qty, struct cart *head){
                 if(tail->itemId == id) {
                     tail->price += qty*price;
                     tail->qty += qty;
-                    return;
+                    return head;
                 }
             }
         }
@@ -36,4 +37,5 @@ void addItem(int id, char name[25], double price, int qty, struct cart *head){
         temp->next = NULL;
         tail->next = temp;
     }
+    return head;
 }
