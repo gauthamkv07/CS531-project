@@ -51,9 +51,13 @@ void searchMenu(MYSQL *conn) {
                 printf("Couldn't get results set: %s\n", mysql_error(conn));
             } else {
                 MYSQL_ROW row = mysql_fetch_row(result);
+                if(!row){
+                    printf("This product is not available right now. \n\n");
+                    return;
+                }
                 char brands[12][25];
                 index = 1;
-                // puts(row[0]);
+                printf("Brands: \n");
                 while (row = mysql_fetch_row(result)) {
                     printf("%d.", index);
                     strncpy(brands[index-1],row[0],25);
@@ -61,6 +65,13 @@ void searchMenu(MYSQL *conn) {
                     index++;
                 }
                 printf("%d.Back to the main menu\n\n", index);
+
+                printf("choose brand: ");
+                fgets(buff, 100, stdin);
+                choice = atoi(buff);
+                if(choice < index) {
+                    printf("okay");
+                }
             } 
         }
     }
