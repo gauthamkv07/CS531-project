@@ -154,7 +154,7 @@ struct cart * searchLaptopBrands(MYSQL *conn , struct cart * head, char table[25
             }
         }
         strcpy(processorBrand, processorBrands[choice - 1]);
-        return searchResults(conn, table ,brands[choice-1],head);
+        return searchResults(conn, table ,brand,head);
       }
     return head;
 }
