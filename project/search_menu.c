@@ -53,7 +53,7 @@ void searchMenu(MYSQL *conn) {
                 MYSQL_ROW row = mysql_fetch_row(result);
                 char brands[12][25];
                 index = 1;
-                puts(row[0]);
+                // puts(row[0]);
                 while (row = mysql_fetch_row(result)) {
                     printf("%d.", index);
                     strncpy(brands[index-1],row[0],25);
