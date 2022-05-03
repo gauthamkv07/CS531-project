@@ -3,6 +3,8 @@
 #include<stdlib.h>
 #include "shoppingCart.h"
 
+void printAdded();
+
 struct cart * addItem(int id, double price, char name[25], char prodName[200], int qty, struct cart *head){
     if(head == NULL || head->itemId == -1) {
         head = (struct cart *)malloc(sizeof(struct cart));
@@ -12,12 +14,14 @@ struct cart * addItem(int id, double price, char name[25], char prodName[200], i
         head->price = price;
         head->qty = qty;
         head->next = NULL;
+        printAdded();
         return head;
     } else {
         struct cart *tail = head;
         if(tail->itemId == id && strcmp(tail->name, name) == 0) {
             tail->price += price;
             tail->qty += qty;
+            printAdded();
             return head;
         }
         while(tail->next != NULL) {
@@ -26,6 +30,7 @@ struct cart * addItem(int id, double price, char name[25], char prodName[200], i
                 if(tail->itemId == id && strcmp(tail->name, name) == 0) {
                     tail->price += price;
                     tail->qty += qty;
+                    printAdded();
                     return head;
                 }
             }
@@ -39,5 +44,10 @@ struct cart * addItem(int id, double price, char name[25], char prodName[200], i
         temp->next = NULL;
         tail->next = temp;
     }
+    printAdded();
     return head;
+}
+
+void printAdded() {
+    printf("Item added to cart\n");
 }
