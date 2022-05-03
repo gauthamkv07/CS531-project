@@ -39,7 +39,7 @@ struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char 
             char storage[12][25];
             char price[12][25];
             
-            printf("Index  brandName processorBrand processorModel graphicCard graphicCardModel   OS RAM storage price\n");
+            printf("Index  brandName  processorBrand processorModel graphicCard graphicCardModel   OS RAM storage price\n");
             int index = 1;
             strncpy(id[index-1], row[0], 2);
             strncpy(brandName[index-1], row[1], 25);
@@ -51,7 +51,7 @@ struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char 
             strncpy(RAM[index-1], row[7], 25);
             strncpy(storage[index-1], row[8], 25);
             strncpy(price[index-1], row[9], 25);
-            printf(" %-5d %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s \n", index,brandName, processorBrand,processorModel,graphicCardBrand,graphicCardModel,operatingSystem,RAM,storage,price);
+            printf(" %-5d %-10s %-15s %-10s %-10s %-10s %-10s %-10s %-10s %-10s \n", index,brandName, processorBrand,processorModel,graphicCardBrand,graphicCardModel,operatingSystem,RAM,storage,price);
             index++;
             while (row = mysql_fetch_row(result)) {
                 strncpy(id[index-1], row[0], 2);
@@ -64,7 +64,7 @@ struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char 
                 strncpy(RAM[index-1], row[7], 25);
                 strncpy(storage[index-1], row[8], 25);
                 strncpy(price[index-1], row[9], 25);
-                printf(" %-5d %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s \n", index,brandName, processorBrand,processorModel,graphicCardBrand,graphicCardModel,operatingSystem,RAM,storage,price);
+                printf(" %-5d %-10s %-15s %-10s %-10s %-10s %-10s %-10s %-10s %-10s \n", index,brandName, processorBrand,processorModel,graphicCardBrand,graphicCardModel,operatingSystem,RAM,storage,price);
                 index++;
             }
             printf("%d. Back to main menu\n\n", index);
