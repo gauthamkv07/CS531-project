@@ -17,6 +17,7 @@ void searchResults(MYSQL *conn , char product[25], char brand[25]) {
     strcpy(queryPt2, strcat(queryPt2, "\";"));
     strcpy(query, strcat(queryPt1,queryPt2));
     
+    printf("%s\n", query);
     if (mysql_query(conn, query)) {
         connection_error(conn);
         return;
