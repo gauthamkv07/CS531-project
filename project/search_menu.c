@@ -134,8 +134,8 @@ struct cart * searchMenu(MYSQL *conn, struct cart *head) {
                                 }
                             }
                             strcpy(processorBrand, processorBrands[choice - 1]);
+                            return searchResults(conn, table ,brands[choice-1],head);
                         }
-                        return searchResults(conn, table ,brands[choice-1],head);
                     }
                 } 
             } 
