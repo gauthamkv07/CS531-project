@@ -5,6 +5,8 @@
 #include "structures.h"
 #include "admin_menu.h"
 
+void searchResults(MYSQL *conn);
+
 void searchMenu(MYSQL *conn) {
     
     int index = 1;
@@ -89,7 +91,7 @@ void searchMenu(MYSQL *conn) {
                     }
                 }
                 if(choice < index) {
-                    printf("okay\n");
+                    searchResults(conn);
                 }
             } 
         }

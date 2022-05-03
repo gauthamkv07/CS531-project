@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include "shoppingCart.h"
 
-struct cart * addItem(int id, char name[25], double price, int qty, struct cart *head){
+struct cart * addItem(int id, char name[25], float price, int qty, struct cart *head){
     if(head == NULL || head->itemId == -1) {
         head = (struct cart *)malloc(sizeof(struct cart));
         head->itemId = id;
