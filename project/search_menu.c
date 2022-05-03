@@ -21,7 +21,6 @@ void searchMenu(MYSQL *conn) {
             printf("nothing to display, database is empty. \n\n");
             return;
         }
-        puts(row[0]);
         while (row = mysql_fetch_row(result)) {
             printf("%d.", index);
             strncpy(tables[index-1],row[0],25);
@@ -70,7 +69,7 @@ void searchMenu(MYSQL *conn) {
                 fgets(buff, 100, stdin);
                 choice = atoi(buff);
                 if(choice < index) {
-                    printf("okay");
+                    printf("okay\n");
                 }
             } 
         }
