@@ -14,7 +14,7 @@ void searchResults(MYSQL *conn , char product[25], char brand[25]) {
     strcpy(queryPt1, strcat(queryPt1, product));
     strcpy(queryPt2, "WHERE brandName = \"");
     strcpy(queryPt2, strcat(queryPt2, brand));
-    strcpy(queryPt2, strcat(queryPt2, "\""));
+    strcpy(queryPt2, strcat(queryPt2, "\";"));
     strcpy(query, strcat(queryPt1,queryPt2));
     
     if (mysql_query(conn, query)) {
