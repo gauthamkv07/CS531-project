@@ -100,7 +100,7 @@ struct cart * searchMenu(MYSQL *conn, struct cart *head) {
                     strcpy(brand, brands[choice - 1]);
 
                     if(choice < index) {
-                        if(!strcmp(tables[choice-1],"laptops")) {
+                        if(!strcmp(table,"laptops")) {
                             return searchLaptopBrands(conn, head, table,brand);
                         }
                     }
