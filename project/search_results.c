@@ -17,11 +17,25 @@ void searchResults(MYSQL *conn , char product[25], char brand[25]) {
     strcpy(queryPt2, strcat(queryPt2, "\";"));
     strcpy(query, strcat(queryPt1,queryPt2));
     
-    printf("%s\n", query);
     if (mysql_query(conn, query)) {
         connection_error(conn);
         return;
     } else {
-        printf("succesfully connected. \n\n");
+        MYSQL_RES *result = mysql_store_result(conn);
+        if (!result) {
+            printf("Couldn't get results set: %s\n", mysql_error(conn));
+        } else {
+            MYSQL_ROW row = mysql_fetch_row(result);
+            if(!row){
+                printf("This product is not available right now. \n\n");
+                return;
+            }
+            puts(row[0]);
+            while (row = mysql_fetch_row(result)) {
+                    // printf("%d.", index);
+                    // strncpy(brands[index-1],row[0],25);
+                puts(row[0]);
+            }
+        }
     }
 }
