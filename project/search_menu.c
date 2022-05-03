@@ -6,6 +6,8 @@
 #include "admin_menu.h"
 
 void searchMenu(MYSQL *conn) {
+    
+    int index = 0;
     MYSQL_RES *result = mysql_list_tables(conn, "%");
 
     if (!result) {
@@ -19,13 +21,20 @@ void searchMenu(MYSQL *conn) {
             return;
         }
         puts(row[0]);
-        int index = 0;
         while (row = mysql_fetch_row(result)) {
-            printf("%d.", index);
+            printf("%d.", index+1);
             puts(row[0]);
             index++;
         }
         mysql_free_result(result);
+    }
+
+    int choice = 0;
+    char buff[100];
+    if(index > 0) {
+        printf("choose item: ");
+        fgets(buff, 100, stdin);
+        choice = atoi(buff);
     }
     return;
 }
