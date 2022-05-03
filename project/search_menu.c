@@ -84,6 +84,7 @@ struct cart * searchMenu(MYSQL *conn, struct cart *head) {
                         index++;
                     }
                     printf("%d.Back to the main menu\n\n", index);
+                    mysql_free_result(result);
 
                     choice = 0;
                     while(choice > index+1 || choice == 0) {
@@ -96,7 +97,6 @@ struct cart * searchMenu(MYSQL *conn, struct cart *head) {
                     }
                     char brand[25];
                     strcpy(brand, brands[choice - 1]);
-                    mysql_free_result(result);
 
                     if(choice < index) {
                         sprintf(query, "select distinct processorBrand from %s where brandName = \"%s\"", table, brand);
