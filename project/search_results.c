@@ -50,7 +50,7 @@ struct cart * searchResults(MYSQL *conn , char product[25], char brand[25], stru
                 printf("%-5s %-25s %-10s \n", index,brandName,price);
                 index++;
             }
-            printf("%d. Back to main menu", index);
+            printf("%d. Back to main menu\n\n", index);
 
             int choice = 0;
             char buff[100];
