@@ -63,7 +63,9 @@ struct cart * searchResults(MYSQL *conn , char product[25], char brand[25], stru
                 }
             }
             if(choice < index) {
-                return addItem(atoi(id[index-1]),product, atof(price[index-1]), 1, head);
+                int itemId = atoi(id[index-1]);
+                float itemPrice = atof(price[index-1]);
+                return addItem(itemId,product, itemPrice, 1, head);
             }
         }
     }
