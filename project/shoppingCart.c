@@ -10,6 +10,7 @@ void printBill(struct cart *head,double total,double tax);
 void printCart(struct cart * head);
 
 void printShoppingCartMenu() {
+    printf("\nCart menu:\n");
     printf("1.Place Order\n");
     printf("2.Clear cart\n");
     printf("3.Go Back\n");
