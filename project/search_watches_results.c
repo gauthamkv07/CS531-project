@@ -8,12 +8,19 @@
 
 struct cart * addItem(int id, double price, char name[25], char prodName[25], int qty, struct cart *head);
 
-struct cart * searchWatchesResults(MYSQL *conn , char product[25], char brand[25], struct cart * head) {
+struct cart * searchWatchesResults(MYSQL *conn , char product[25], char brand[25], int sortChoice,struct cart * head) {
+    char sort[100];
+    if(sortChoice == 1) {
+        strcpy(sort,"asc");
+    } else {
+        strcpy(sort,"desc");
+    }
+
     printf("product : %s , brand: %s \n");
     printf("Search results: \n");
 
     char query[500];
-    sprintf(query, "SELECT * FROM %s WHERE brandName = \"%s\"", product, brand);
+    sprintf(query, "SELECT * FROM %s WHERE brandName = \"%s\" order by price %s", product, brand,sort);
 
     if (mysql_query(conn, query)) {
         connection_error(conn);
@@ -58,7 +65,7 @@ struct cart * searchWatchesResults(MYSQL *conn , char product[25], char brand[25
                 printf(" %-5d %-10s %-11s %-8s %-11s %-16s \n", index,brandName[index-1], ModelNumber[index-1],type[index-1],color[index-1],weight[index-1],price[index -1]);
                 index++;
             }
-            printf("%d. Back to main menu\n\n", index);
+            printf(" %d. Back to main menu\n\n", index);
 
             int choice = 0;
             char buff[100];
