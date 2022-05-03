@@ -12,7 +12,7 @@ struct cart * searchCameraResults(MYSQL *conn , char product[25], char brand[25]
 
 struct cart * searchRefrigeratorsResults(MYSQL *conn , char product[25], char brand[25], char doorStyle[25], int sortChoice, struct cart * head);
 
-struct cart * searchPhonesResults(MYSQL *conn , char product[25], char brand[25], struct cart * head);
+struct cart * searchPhonesResults(MYSQL *conn , char product[25], char brand[25], int sortChoice,struct cart * head);
 
 struct cart * searchWatchesResults(MYSQL *conn , char product[25], char brand[25], int sortChoice, struct cart * head);
 
@@ -124,7 +124,8 @@ struct cart * searchMenu(MYSQL *conn, struct cart *head) {
                             return searchRefrigeratorsBrands(conn, head, table,brand);
                         }
                         if(!strcmp(table, "phones")) {
-                            return searchPhonesResults(conn , table, brand, head);
+                            int sortChoice = sortChoices();
+                            return searchPhonesResults(conn , table, brand, sortChoice,head);
                         }
                         int sortChoice = sortChoices();
                         return searchWatchesResults(conn , table, brand, sortChoice, head);
@@ -180,22 +181,7 @@ struct cart * searchLaptopBrands(MYSQL *conn , struct cart * head, char table[25
         }
         strcpy(processorBrand, processorBrands[choice - 1]);
 
-        printf("Sort by: \n");
-        printf("1.price low to high\n");
-        printf("2.price high to low\n");
-
-        int sortChoice = 0;
-        fflush(stdin);
-        while(sortChoice == 0 || sortChoice > 2) {
-            printf("Choose option: ");
-            char buffer[100];
-            fgets(buffer, 100, stdin);
-            sortChoice = atoi(buffer);
-            if(sortChoice == 0 || sortChoice > 2) {
-                printf("Choose an valid option.\n");
-            }
-        }
-        printf("\n");
+        int sortChoice = sortChoices();
 
         return searchResults(conn, table ,brand, processorBrand , sortChoice ,head);
       }
@@ -247,22 +233,7 @@ struct cart * searchCameraBrands(MYSQL *conn , struct cart * head, char table[25
         }
         strcpy(cameraType, cameraTypes[choice - 1]);
 
-        printf("Sort by: \n");
-        printf("1.price low to high\n");
-        printf("2.price high to low\n");
-
-        int sortChoice = 0;
-        fflush(stdin);
-        while(sortChoice == 0 || sortChoice > 2) {
-            printf("Choose option: ");
-            char buffer[100];
-            fgets(buffer, 100, stdin);
-            sortChoice = atoi(buffer);
-            if(sortChoice == 0 || sortChoice > 2) {
-                printf("Choose an valid option.\n");
-            }
-        }
-        printf("\n");
+        int sortChoice = sortChoices();
 
         return searchCameraResults(conn, table ,brand, cameraType , sortChoice,head);
       }
@@ -314,22 +285,7 @@ struct cart * searchRefrigeratorsBrands(MYSQL *conn , struct cart * head, char t
         }
         strcpy(doorStyle, doorStyles[choice - 1]);
 
-        printf("Sort by: \n");
-        printf("1.price low to high\n");
-        printf("2.price high to low\n");
-
-        int sortChoice = 0;
-        fflush(stdin);
-        while(sortChoice == 0 || sortChoice > 2) {
-            printf("Choose option: ");
-            char buffer[100];
-            fgets(buffer, 100, stdin);
-            sortChoice = atoi(buffer);
-            if(sortChoice == 0 || sortChoice > 2) {
-                printf("Choose an valid option.\n");
-            }
-        }
-        printf("\n");
+        int sortChoice = sortChoices();
 
         return searchRefrigeratorsResults(conn, table ,brand, doorStyle, sortChoice, head);
       }
