@@ -40,17 +40,17 @@ void shoppingCart(struct cart *head) {
                 head->itemId = -1;
                 return;
             case 2:
-                printf("Choose iitem to edit: ");
                 int updateChoice = 0;
                 char buffer[100];
                 while(updateChoice == 0 || updateChoice >= index) {
+                    printf("Choose iitem to edit: ");
                     fgets(buffer, 100, stdin);
                     updateChoice = atoi(buff);
                     if(updateChoice == 0 || updateChoice >= index) {
                         printf("Not an valid option\n");
                     }
-                    index = printCart(head);
                 }
+                index = printCart(head);
                 break;
             case 3:
                 printf("\nCart cleared\n\n");
