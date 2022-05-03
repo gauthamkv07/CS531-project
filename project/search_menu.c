@@ -6,7 +6,7 @@
 #include "admin_menu.h"
 #include "shoppingCart.h"
 
-struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char processorBrand[25], int sortChoice, struct cart * head;
+struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char processorBrand[25], int sortChoice, struct cart * head);
 
 struct cart * searchCameraResults(MYSQL *conn , char product[25], char brand[25],char cameraType[25], struct cart * head);
 
