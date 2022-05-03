@@ -9,8 +9,6 @@
 struct cart * addItem(int id, double price, char name[25], char prodName[25], int qty, struct cart *head);
 
 struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char processorBrand[25], int sortChoice, struct cart * head) {
-    
-
     char sort[100];
     if(sortChoice == 1) {
         strcpy(sort,"asc");
