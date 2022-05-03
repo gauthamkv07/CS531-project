@@ -11,7 +11,7 @@ struct cart * addItem(int id, double price, char name[25], char prodName[25], in
 struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char processorBrand[25], struct cart * head) {
     printf("Sort by: \n");
     printf("1.price low to high\n");
-    printf("2.price high to low");
+    printf("2.price high to low\n");
 
     int sortChoice = 0;
     char buff[100];
@@ -24,7 +24,7 @@ struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char 
         }
     }
 
-    char sort[5];
+    char sort[100];
     if(sortChoice == 1) {
         strcpy(sort,"asc");
     } else {
