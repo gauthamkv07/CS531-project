@@ -14,6 +14,8 @@ struct cart * searchRefrigeratorsResults(MYSQL *conn , char product[25], char br
 
 struct cart * searchPhonesResults(MYSQL *conn , char product[25], char brand[25], struct cart * head);
 
+struct cart * searchWatchesResults(MYSQL *conn , char product[25], char brand[25], struct cart * head);
+
 struct cart * searchLaptopBrands(MYSQL *conn , struct cart * head, char table[25], char brand[25]);
 
 struct cart * searchCameraBrands(MYSQL *conn , struct cart * head, char table[25], char brand[25]);
@@ -122,6 +124,7 @@ struct cart * searchMenu(MYSQL *conn, struct cart *head) {
                         if(!strcmp(table, "phones")) {
                             return searchPhonesResults(conn , table, brand, head);
                         }
+                        return searchWatchesResults(conn , table, brand, head);
                     }
                 }
             }
