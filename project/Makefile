@@ -20,7 +20,7 @@ search_menu.o:
 	gcc -c search_menu.c `mysql_config --cflags --libs`
 search_results.o:
 	gcc -c search_results.c `mysql_config --cflags --libs`
-search_camera_results.o
+search_camera_results.o:
 	gcc -c search_camera_results.c `mysql_config --cflags --libs`
 clean:
 	rm -rf a.out
