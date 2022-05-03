@@ -22,7 +22,7 @@ struct cart * addItem(int id, double price, char name[25], int qty, struct cart 
         while(tail->next != NULL) {
             tail = tail->next;
             if(tail != NULL) {
-                if(tail->itemId == id && !strcmp(tail->name, name)) {
+                if(tail->itemId == id && strcmp(tail->name, name) == 0) {
                     tail->price += price;
                     tail->qty += qty;
                     return head;
