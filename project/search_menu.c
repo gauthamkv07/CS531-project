@@ -24,11 +24,11 @@ void searchMenu(MYSQL *conn) {
         puts(row[0]);
         while (row = mysql_fetch_row(result)) {
             printf("%d.", index);
-            strncpy(tables[index-1],row[0],100);
+            strncpy(tables[index-1],row[0],25);
             puts(row[0]);
             index++;
         }
-        printf("%d. Back to the main menu", index);
+        printf("%d. Back to the main menu\n\n", index);
         mysql_free_result(result);
     }
 
