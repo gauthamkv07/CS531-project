@@ -46,6 +46,7 @@ void shoppingCart(struct cart *head) {
             switch (choice)
             {
             case 1:
+                printf("\nOrder placed successfully\n");
                 printBill(head, total, tax);
                 total = 0; tax = 0;
                 head->itemId = -1;
