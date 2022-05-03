@@ -43,7 +43,7 @@ struct cart * searchWatchesResults(MYSQL *conn , char product[25], char brand[25
             char weight[12][25];
             char price[12][25];
             
-            printf("Index  brandName  ModelNumber            Type  color  weight     price\n");
+            printf("Index  brandName  ModelNumber            Type            color  weight     price\n");
             int index = 1;
             strncpy(id[index-1], row[0], 2);
             strncpy(brandName[index-1], row[1], 25);
@@ -52,7 +52,7 @@ struct cart * searchWatchesResults(MYSQL *conn , char product[25], char brand[25
             strncpy(color[index-1], row[4], 25);
             strncpy(weight[index-1], row[5], 25);
             strncpy(price[index-1], row[6], 25);
-            printf(" %-5d %-10s %-22s %-5s %-6s %-10s %-16s \n", index,brandName[index-1], ModelNumber[index-1],type[index-1],color[index-1],weight[index-1],price[index -1]);
+            printf(" %-5d %-10s %-22s %-10s %-6s %-10s %-16s \n", index,brandName[index-1], ModelNumber[index-1],type[index-1],color[index-1],weight[index-1],price[index -1]);
             index++;
             while (row = mysql_fetch_row(result)) {
                 strncpy(id[index-1], row[0], 2);
