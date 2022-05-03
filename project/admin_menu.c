@@ -178,7 +178,7 @@ int insert_laptop(MYSQL *conn){
     printf("please input the brandName within 24 characters long: \n");
     // try to get an user input string 
     scanf("%[^\n]%*c",buffer);
-    getchar();
+    // getchar();
     // add ' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
