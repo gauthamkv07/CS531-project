@@ -11,7 +11,8 @@ void printCart(struct cart * head);
 
 void printShoppingCartMenu() {
     printf("1.Place Order\n");
-    printf("2.Go Back\n");
+    printf("2.Clear cart\n");
+    printf("3.Go Back\n");
 }
 
 void shoppingCart(struct cart *head) {
@@ -23,7 +24,7 @@ void shoppingCart(struct cart *head) {
         //print bill
         int choice = 0;
         char buff[100];
-        while(choice != 2) {
+        while(choice != 3) {
             printShoppingCartMenu();
             printf("Enter your choice:");
             fgets(buff, 100, stdin);
@@ -37,6 +38,9 @@ void shoppingCart(struct cart *head) {
                 head->itemId = -1;
                 return;
             case 2:
+                head->itemId = -1;
+                break;
+            case 3:
                 break;
             default:
                 printf("Not a valid option \n");
