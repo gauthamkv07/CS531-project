@@ -14,7 +14,7 @@ struct cart * addItem(int id, double price, char name[25], int qty, struct cart 
         return head;
     } else {
         struct cart *tail = head;
-        if(tail->itemId == id) {
+        if(tail->itemId == id && strcmp(tail->name, name) == 0) {
             tail->price += price;
             tail->qty += qty;
             return head;
