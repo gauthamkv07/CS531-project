@@ -13,7 +13,7 @@ struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char 
     printf("1.price low to high\n");
     printf("2.price high to low\n");
 
-    int sortChoice = 0;
+    int sortChoice = 1;
     char buff[100];
     // while(sortChoice == 0 || sortChoice > 2) {
     //     printf("Choose option: ");
