@@ -9,7 +9,7 @@ void printBill(struct cart *head,double total,double tax) {
 
     struct cart *temp = head;
 
-        fprintf(fp,"                 BILL                     \n");
+        fprintf(fp,"BILL\n\n");
         fprintf(fp,"ind    name                                                                                      qty   price\n");
 
         int index = 1;
