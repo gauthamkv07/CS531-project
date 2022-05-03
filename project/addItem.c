@@ -8,14 +8,14 @@ struct cart * addItem(int id, char name[25], float price, int qty, struct cart *
         head = (struct cart *)malloc(sizeof(struct cart));
         head->itemId = id;
         strcpy(head->name,name);
-        head->price = price*qty;
+        head->price = price;
         head->qty = qty;
         head->next = NULL;
         return head;
     } else {
         struct cart *tail = head;
         if(tail->itemId == id) {
-            tail->price += qty*price;
+            tail->price += price;
             tail->qty += qty;
             return head;
         }
@@ -23,7 +23,7 @@ struct cart * addItem(int id, char name[25], float price, int qty, struct cart *
             tail = tail->next;
             if(tail != NULL) {
                 if(tail->itemId == id && !strcmp(tail->name, name)) {
-                    tail->price += qty*price;
+                    tail->price += price;
                     tail->qty += qty;
                     return head;
                 }
@@ -32,7 +32,7 @@ struct cart * addItem(int id, char name[25], float price, int qty, struct cart *
         struct cart *temp = (struct cart *)malloc(sizeof(struct cart));
         temp->itemId = id;
         strcpy(temp->name,name);
-        temp->price = price*qty;
+        temp->price = price;
         temp->qty = qty;
         temp->next = NULL;
         tail->next = temp;
