@@ -12,9 +12,11 @@ void printBill(struct cart *head,double total,double tax) {
         fprintf(fp,"                 BILL                     \n");
         fprintf(fp,"id    name                                                                                      qty   price\n");
 
+        int index = 1;
         while(temp!=NULL) {
-            fprintf(fp,"%d    %-90s  %d    %-10.2f\n", temp->itemId, temp->prodName,  temp->qty, temp->price);
+            fprintf(fp,"%d    %-90s  %d    %-10.2f\n", index, temp->prodName,  temp->qty, temp->price);
             temp = temp -> next;
+            index++;
         }
         fprintf(fp, "\n");
         fprintf(fp,"tax :                                                                                                 %.2f\n", tax);
