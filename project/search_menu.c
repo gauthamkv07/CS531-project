@@ -10,6 +10,8 @@ struct cart * searchResults(MYSQL *conn,char product[25], char brand[25],char pr
 
 struct cart * searchLaptopBrands(MYSQL *conn , struct cart * head, char table[25], char brand[25]);
 
+struct cart * searchCameraBrands(MYSQL *conn , struct cart * head, char table[25], char brand[25]);
+
 struct cart * searchMenu(MYSQL *conn, struct cart *head) {
     
     int index = 1;
@@ -182,14 +184,14 @@ struct cart * searchCameraBrands(MYSQL *conn , struct cart * head, char table[25
       int index = 1;
       printf("cameraTypes: \n");
       char cameraType[12][25];
-      char cameraType[25];
+      char cameraTypes[25];
       printf("%d.", index);
-      strncpy(cameraType[index-1],row[0],25);
+      strncpy(cameraTypes[index-1],row[0],25);
       puts(row[0]);
       index++;
       while (row = mysql_fetch_row(result)) {
           printf("%d.", index);
-          strncpy(cameraType[index-1],row[0],25);
+          strncpy(cameraTypes[index-1],row[0],25);
           puts(row[0]);
           index++;
       }
@@ -205,7 +207,7 @@ struct cart * searchCameraBrands(MYSQL *conn , struct cart * head, char table[25
                 printf("Choose an valid option.\n");
             }
         }
-        strcpy(cameraType, cameraType[choice - 1]);
+        strcpy(cameraType, cameraTypes[choice - 1]);
         return searchResults(conn, table ,brand, cameraType ,head);
       }
     return head;
