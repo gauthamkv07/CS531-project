@@ -76,7 +76,7 @@ struct cart * searchMenu(MYSQL *conn, struct cart *head) {
                     index = 1;
                     printf("\nBrands: \n");
                     printf("%d.", index);
-                    strncpy(tables[index-1],row[0],25);
+                    strncpy(brands[index-1],row[0],25);
                     puts(row[0]);
                     index++;
                     while (row = mysql_fetch_row(result)) {
