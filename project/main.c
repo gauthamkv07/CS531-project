@@ -6,6 +6,7 @@
 #include "admin_menu.h"
 #include "shoppingCart.h"
 
+void searchMenu();
 void shoppingCart(struct cart *head);
 struct cart * addItem(int id, char name[25], double price, int qty, struct cart *head);
 
@@ -183,7 +184,7 @@ void main() {
                 admin_choice = 0;
                 break;
             case 2: 
-                printf("Search for products\n");
+                searchMenu();
                 break;
             case 3:
                 shoppingCart(head);
