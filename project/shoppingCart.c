@@ -42,13 +42,31 @@ void shoppingCart(struct cart *head) {
                 head->itemId = -1;
                 return;
             case 2:
-                printf("%d\n", index);
                 while(updateChoice == 0 || updateChoice >= index) {
                     printf("Choose iitem to edit: ");
                     fgets(buffer, 100, stdin);
                     updateChoice = atoi(buffer);
                     if(updateChoice == 0 || updateChoice >= index) {
                         printf("Not an valid option\n");
+                    } else {
+                        int qty = 0;
+                        char qtyBuffer[100];
+                        while(qty <= 0 || qty > 5) {
+                            printf("Enter qty: ");
+                            fgets(qtyBuffer, 100, stdin);
+                            if(qty <= 0) {
+                                printf("Not an valid qty\n");
+                            } else {
+                                struct cart * temp = head;
+                                int itr = 1;
+                                while(itr < updateChoice) {
+                                    temp = temp->next;
+                                    itr++;
+                                }
+                                temp -> price = (temp->price/temp->qty) *qty;
+                                temp -> qty = qty;
+                            }
+                        }
                     }
                 }
                 index = printCart(head);
