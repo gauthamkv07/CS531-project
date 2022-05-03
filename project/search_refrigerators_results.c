@@ -71,7 +71,7 @@ struct cart * searchRefrigeratorsResults(MYSQL *conn , char product[25], char br
                 printf(" %-5d %-10s %-11s %-10s %-11s %-16s \n", index,brandName[index-1], ModelNumber[index-1],doorStyle[index-1],color[index-1],price[index -1]);
                 index++;
             }
-            printf("%d. Back to main menu\n\n", index);
+            printf(" %d. Back to main menu\n\n", index);
 
             int choice = 0;
             char buff[100];
