@@ -7,12 +7,13 @@
 
 void searchMenu(MYSQL *conn) {
     
-    int index = 0;
+    int index = 1;
     MYSQL_RES *result = mysql_list_tables(conn, "%");
+    char tables[12][25];
 
     if (!result) {
-        
         connection_error(conn);
+        return;
     } 
     else {
         MYSQL_ROW row = mysql_fetch_row(result);
@@ -22,19 +23,23 @@ void searchMenu(MYSQL *conn) {
         }
         puts(row[0]);
         while (row = mysql_fetch_row(result)) {
-            printf("%d.", index+1);
+            printf("%d.", index);
+            strcpy(tables[index-1],row[0]);
             puts(row[0]);
             index++;
         }
+        printf("%d. Back to the main menu");
         mysql_free_result(result);
     }
 
     int choice = 0;
     char buff[100];
-    if(index > 0) {
-        printf("choose item: ");
-        fgets(buff, 100, stdin);
-        choice = atoi(buff);
+    char query[500];
+    printf("choose option: ");
+    fgets(buff, 100, stdin);
+    choice = atoi(buff);
+    if(choice <index){
+        strcpy(query, strcat("SELECT * FROM ", tables[index-1]));
+        printf("%s\n",query);
     }
-    return;
 }
