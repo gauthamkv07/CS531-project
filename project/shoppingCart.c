@@ -13,8 +13,9 @@ void printShoppingCartMenu() {
     printf("\nCart menu:\n");
     printf("1.Place Order\n");
     printf("2.update cart item\n");
-    printf("3.Clear cart\n");
-    printf("4.Go Back\n");
+    printf("3.Delete cart\n");
+    printf("4.Clear cart\n");
+    printf("5.Go Back\n");
 }
 
 void shoppingCart(struct cart *head) {
@@ -24,11 +25,9 @@ void shoppingCart(struct cart *head) {
         int index = printCart(head);
 
         //print bill
-        int choice = 0;
-        char buff[100];
-        int updateChoice = 0;
-        char buffer[100];
-        while(choice != 4) {
+        int choice = 0,updateChoice = 0 , deleteChoice = 0;
+        char buff[100], buffer[100], deleteBuffer[100];
+        while(choice != 5) {
             printShoppingCartMenu();
             printf("Enter your choice:");
             fgets(buff, 100, stdin);
@@ -75,10 +74,42 @@ void shoppingCart(struct cart *head) {
                 updateChoice = 0;
                 break;
             case 3:
+                while(deleteChoice == 0 || deleteChoice >= index) {
+                    printf("choose Item to delete: ");
+                    fgets(deleteBuffer, 100 ,stdin);
+                    deleteChoice = atoi(deleteBuffer);
+                    if(deleteChoice == 0 || deleteChoice >= index) {
+                        printf("Not an valid option\n");
+                    } else {
+                        if(deleteChoice == 1 && index == 2) {
+                            head -> itemId = -1;
+                            printf("\nCart is Empty\n");
+                            return;
+                        } else {
+                            struct cart * temp = head;
+                            int itr = 1;
+                            while(itr < updateChoice-1) {
+                                temp = temp->next;
+                                itr++;
+                            }
+                            if(temp->next->next == NULL) {
+                                temp -> next = NULL;
+                            } else {
+                                temp -> next = temp -> next -> next;
+                            }
+                            printf("\nDeleted Item\n\n");
+                        }
+                    }
+                }
+                total = 0;tax = 0;
+                index = printCart(head);
+                deleteChoice = 0;
+                break;
+            case 4:
                 printf("\nCart cleared\n\n");
                 head->itemId = -1;
                 return;
-            case 4:
+            case 5:
                 break;
             default:
                 printf("Not a valid option \n");
