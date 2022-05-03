@@ -42,6 +42,26 @@ void searchMenu(MYSQL *conn) {
         char selectQuery[50];
         strcpy(selectQuery, "SELECT distinct brandName FROM ");
         strcpy(query, strcat(selectQuery , tables[choice-1]));
-        display_helper(conn, query);
+        if (mysql_query(conn, query)) {
+            connection_error(conn);
+            return;
+        } else {
+            MYSQL_RES *result = mysql_store_result(conn);
+            if (!result) {
+                printf("Couldn't get results set: %s\n", mysql_error(conn));
+            } else {
+                MYSQL_ROW row = mysql_fetch_row(result);
+                char brands[12][25];
+                index = 1;
+                puts(row[0]);
+                while (row = mysql_fetch_row(result)) {
+                    printf("%d.", index);
+                    strncpy(brands[index-1],row[0],25);
+                    puts(row[0]);
+                    index++;
+                }
+                printf("%d.Back to the main menu\n\n", index);
+            } 
+        }
     }
 }
