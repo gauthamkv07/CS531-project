@@ -39,7 +39,7 @@ void shoppingCart(struct cart *head) {
                 return;
             case 2:
                 head->itemId = -1;
-                break;
+                return;
             case 3:
                 break;
             default:
