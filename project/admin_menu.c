@@ -177,7 +177,7 @@ int insert_laptop(MYSQL *conn){
     // ask user for the struct info
     printf("please input the brandName within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
+    scanf("%[^\n]%*c",buffer);
     getchar();
     // add ' ' to the string
     processing[0] = '\0';
