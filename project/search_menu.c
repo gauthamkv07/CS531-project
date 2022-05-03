@@ -40,7 +40,7 @@ void searchMenu(MYSQL *conn) {
     choice = atoi(buff);
     if(choice <index){
         char selectQuery[50];
-        strcpy(selectQuery, "SELECT * FROM ");
+        strcpy(selectQuery, "SELECT distinct brandName FROM ");
         strcpy(query, strcat(selectQuery , tables[choice-1]));
         display_helper(conn, query);
     }
