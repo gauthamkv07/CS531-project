@@ -27,6 +27,7 @@ void shoppingCart(struct cart *head) {
             printf("%d    %-90s  %d    %-10.2f\n", temp->itemId, temp->prodName,  temp->qty, temp->price);
             temp = temp -> next;
         }
+        printf("\n");
         tax += total * 0.06;
         total += total * 0.06;
         printf("tax :                                                                                                 %.2f\n", tax);
