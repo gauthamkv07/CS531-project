@@ -70,6 +70,7 @@ void shoppingCart(struct cart *head) {
                         }
                     }
                 }
+                total = 0;tax = 0;
                 index = printCart(head);
                 updateChoice = 0;
                 break;
@@ -103,7 +104,7 @@ int printCart(struct cart * head) {
         }
         printf("\n");
         tax += total * 0.06;
-        total += total * 0.06;
+        total += tax;
         printf("tax :                                                                                                  %.2f\n", tax);
         printf("total :                                                                                                %.2f\n", total);
         return index;
