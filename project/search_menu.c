@@ -101,6 +101,7 @@ struct cart * searchMenu(MYSQL *conn, struct cart *head) {
                     if(choice < index) {
                             return searchResults(conn, table ,brands[choice-1],head);
                     }
+                }
             } 
         }
     }
