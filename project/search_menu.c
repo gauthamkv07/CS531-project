@@ -5,7 +5,7 @@
 #include "structures.h"
 #include "admin_menu.h"
 
-void searchResults(MYSQL *conn);
+void searchResults(MYSQL *conn,char product[25], char brand[25]);
 
 void searchMenu(MYSQL *conn) {
     
@@ -51,6 +51,8 @@ void searchMenu(MYSQL *conn) {
     
     if(choice <index){
         char selectQuery[50];
+        char table[25];
+        strcpy(table, tables[choice - 1]);
         strcpy(selectQuery, "SELECT distinct brandName FROM ");
         strcpy(query, strcat(selectQuery , tables[choice-1]));
         if (mysql_query(conn, query)) {
@@ -91,7 +93,7 @@ void searchMenu(MYSQL *conn) {
                     }
                 }
                 if(choice < index) {
-                    searchResults(conn);
+                    searchResults(conn, table ,brands[choice-1]);
                 }
             } 
         }
