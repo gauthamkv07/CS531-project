@@ -6,9 +6,8 @@
 #include "admin_menu.h"
 #include "shoppingCart.h"
 
-void searchMenu();
+struct cart * searchMenu(MYSQL *conn, struct cart *head);
 void shoppingCart(struct cart *head);
-struct cart * addItem(int id, char name[25], double price, int qty, struct cart *head);
 
 void printMenu() {
     printf("------------------------------------\n");
@@ -184,19 +183,12 @@ void main() {
                 admin_choice = 0;
                 break;
             case 2: 
-                searchMenu(conn);
+                head = searchMenu(conn,head);
                 break;
             case 3:
                 shoppingCart(head);
                 break;
             case 4:
-                break;
-            case 5:
-                head = addItem(1, "Dell", 25.0, 1, head);
-                head = addItem(1, "Dell", 25.0, 1, head);
-                head = addItem(2, "Sony", 35.0, 1, head);
-                head = addItem(2, "Sony", 35.0, 2, head);
-                head = addItem(3, "whatever", 45.0, 3, head);
                 break;
             default:
                 printf("Not a valid input \n");

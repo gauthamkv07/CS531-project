@@ -4,10 +4,11 @@
 #include "mysql/include/mysql.h"
 #include "structures.h"
 #include "admin_menu.h"
+#include "shoppingCart.h"
 
-void searchResults(MYSQL *conn,char product[25], char brand[25]);
+struct cart * searchResults(MYSQL *conn,char product[25], char brand[25], struct cart * head);
 
-void searchMenu(MYSQL *conn) {
+struct cart * searchMenu(MYSQL *conn, struct cart *head) {
     
     int index = 1;
     MYSQL_RES *result = mysql_list_tables(conn, "%");
@@ -15,13 +16,13 @@ void searchMenu(MYSQL *conn) {
 
     if (!result) {
         connection_error(conn);
-        return;
+        return head;
     } 
     else {
         MYSQL_ROW row = mysql_fetch_row(result);
         if(!row){
             printf("nothing to display, database is empty. \n\n");
-            return;
+            return head;
         }
         printf("\n%d.", index);
         strncpy(tables[index-1],row[0],25);
@@ -57,7 +58,7 @@ void searchMenu(MYSQL *conn) {
         strcpy(query, strcat(selectQuery , tables[choice-1]));
         if (mysql_query(conn, query)) {
             connection_error(conn);
-            return;
+            return head;
         } else {
             MYSQL_RES *result = mysql_store_result(conn);
             if (!result) {
@@ -66,7 +67,7 @@ void searchMenu(MYSQL *conn) {
                 MYSQL_ROW row = mysql_fetch_row(result);
                 if(!row){
                     printf("This product is not available right now. \n\n");
-                    return;
+                    return head;
                 }
                 char brands[12][25];
                 index = 1;
@@ -93,9 +94,10 @@ void searchMenu(MYSQL *conn) {
                     }
                 }
                 if(choice < index) {
-                    searchResults(conn, table ,brands[choice-1]);
+                    return searchResults(conn, table ,brands[choice-1],head);
                 }
             } 
         }
     }
+    return head;
 }

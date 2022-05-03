@@ -4,8 +4,11 @@
 #include "mysql/include/mysql.h"
 #include "structures.h"
 #include "admin_menu.h"
+#include "shoppingCart.h"
 
-void searchResults(MYSQL *conn , char product[25], char brand[25]) {
+struct cart * addItem(int id, char name[25], double price, int qty, struct cart *head);
+
+struct cart * searchResults(MYSQL *conn , char product[25], char brand[25], struct cart * head) {
     printf("product : %s , brand: %s \n");
     printf("Search results: \n");
 
@@ -19,7 +22,7 @@ void searchResults(MYSQL *conn , char product[25], char brand[25]) {
 
     if (mysql_query(conn, query)) {
         connection_error(conn);
-        return;
+        return head;
     } else {
         MYSQL_RES *result = mysql_store_result(conn);
         if (!result) {
@@ -28,7 +31,7 @@ void searchResults(MYSQL *conn , char product[25], char brand[25]) {
             MYSQL_ROW row = mysql_fetch_row(result);
             if(!row){
                 printf("This product is not available right now. \n\n");
-                return;
+                return head;
             }
             char id[12][2];
             char brandName[12][25];
@@ -47,6 +50,22 @@ void searchResults(MYSQL *conn , char product[25], char brand[25]) {
                 printf("%-5s %-25s %-10s \n", index,brandName,price);
                 index++;
             }
+            printf("%d. Back to main menu", index);
+
+            int choice = 0;
+            char buff[100];
+            while(choice > index+1 || choice == 0) {
+                printf("Choose item to add to cart or enter %d to go back: ", index);
+                fgets(buff, 100, stdin);
+                choice = atoi(buff);
+                if(choice > index + 1 || choice == 0) {
+                    printf("Choose an valid option.\n");
+                }
+            }
+            if(choice < index) {
+                return addItem(atoi(id[index-1]),product, atof(price[index-1]), 1, head);
+            }
         }
     }
+    return head;
 }
