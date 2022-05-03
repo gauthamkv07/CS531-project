@@ -39,6 +39,7 @@ struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char 
             char storage[12][25];
             char price[12][25];
             
+            printf("Index  brandName processorBrand processorModel graphicCard graphicCardModel   OS RAM storage price\n");
             int index = 1;
             strncpy(id[index-1], row[0], 2);
             strncpy(brandName[index-1], row[1], 25);
