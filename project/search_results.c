@@ -30,12 +30,15 @@ void searchResults(MYSQL *conn , char product[25], char brand[25]) {
                 printf("This product is not available right now. \n\n");
                 return;
             }
+            int index = 1;
             puts(row[0]);
             while (row = mysql_fetch_row(result)) {
+                index++;
                     // printf("%d.", index);
                     // strncpy(brands[index-1],row[0],25);
                 puts(row[0]);
             }
+            printf("%d\n\n", index);
         }
     }
 }
