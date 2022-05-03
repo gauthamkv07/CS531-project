@@ -99,7 +99,11 @@ struct cart * searchMenu(MYSQL *conn, struct cart *head) {
 
                     if(choice < index) {
                         sprintf(query, "select distinct processorBrand from %s where brandName = \"%s\"", table, brand);
-                        return searchResults(conn, table ,brands[choice-1],head);
+                        MYSQL_RES *result = mysql_store_result(conn);
+                        if (!result) {
+                            printf("Couldn't get results set: %s\n", mysql_error(conn));
+                            return head;
+                        }
                         if (mysql_query(conn, query)) {
                             connection_error(conn);
                             return head;
@@ -135,6 +139,7 @@ struct cart * searchMenu(MYSQL *conn, struct cart *head) {
                                 }
                             }
                             strcpy(processorBrand, processorBrands[choice - 1]);
+                            return searchResults(conn, table ,brands[choice-1],head);
                         }
                     }
                 } 

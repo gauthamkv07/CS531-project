@@ -60,7 +60,6 @@ struct cart * searchResults(MYSQL *conn , char product[25], char brand[25], stru
             if(choice < index) {
                 int itemId = atoi(id[choice-1]);
                 float itemPrice = atof(price[choice-1]);
-                printf("%f  %s\n", itemPrice, price[choice-1]);
                 return addItem(itemId,itemPrice,  product, 1, head);
             }
         }

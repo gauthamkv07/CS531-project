@@ -4,7 +4,6 @@
 #include "shoppingCart.h"
 
 struct cart * addItem(int id, double price, char name[25], int qty, struct cart *head){
-    printf("%f \n", price);
     if(head == NULL || head->itemId == -1) {
         head = (struct cart *)malloc(sizeof(struct cart));
         head->itemId = id;
