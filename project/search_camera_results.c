@@ -6,6 +6,8 @@
 #include "admin_menu.h"
 #include "shoppingCart.h"
 
+struct cart * addItem(int id,  double price, char name[25], int qty, struct cart *head);
+
 struct cart * searchCameraResults(MYSQL *conn , char product[25], char brand[25],char cameraType[25], struct cart * head) {
     printf("product : %s , brand: %s \n");
     printf("Search results: \n");
@@ -71,7 +73,7 @@ struct cart * searchCameraResults(MYSQL *conn , char product[25], char brand[25]
                 strncpy(height[index-1], row[10], 25);
                 strncpy(depth[index-1], row[11], 25);
                 strncpy(price[index-1], row[12], 25);
-                // printf(" %-5d %-10s %-14s %-14s %-11s %-16s %-10s %-10s %-13s %-10s \n", index,brandName, processorBrand,processorModel,graphicCardBrand,graphicCardModel,operatingSystem,RAM,storage,price);
+                printf(" %-5d %-10s %-11s %-11s %-13s %-16s \n", index,brandName[index-1], ModelNumber[index-1],cameraType[index-1],storage[index-1],price[index -1]);
                 index++;
             }
             printf("%d. Back to main menu\n\n", index);
