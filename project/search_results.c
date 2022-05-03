@@ -13,21 +13,19 @@ struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char 
     printf("1.price low to high\n");
     printf("2.price high to low\n");
 
-    int sortChoice = 0;
+    int choice = 0;
     char buff[100];
-    fflush(stdin);
-    while(sortChoice == 0 || sortChoice > 2) {
+    while(choice == 0 || choice > 2) {
         printf("Choose option: ");
         fgets(buff, 100, stdin);
-        printf("%s\n",buff);
-        sortChoice = atoi(buff);
-        if(sortChoice == 0 || sortChoice > 2) {
+        choice = atoi(buff);
+        if(choice == 0 || choice > 2) {
             printf("Choose an valid option.\n");
         }
     }
 
     char sort[100];
-    if(sortChoice == 1) {
+    if(choice == 1) {
         strcpy(sort,"asc");
     } else {
         strcpy(sort,"desc");
