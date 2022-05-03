@@ -6,7 +6,7 @@
 #include "admin_menu.h"
 #include "shoppingCart.h"
 
-struct cart * searchResults(MYSQL *conn,char product[25], char brand[25],char processorBrand[25], struct cart * head);
+struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char processorBrand[25], int sortChoice, struct cart * head;
 
 struct cart * searchCameraResults(MYSQL *conn , char product[25], char brand[25],char cameraType[25], struct cart * head);
 
@@ -176,7 +176,22 @@ struct cart * searchLaptopBrands(MYSQL *conn , struct cart * head, char table[25
             }
         }
         strcpy(processorBrand, processorBrands[choice - 1]);
-        return searchResults(conn, table ,brand, processorBrand ,head);
+        printf("Sort by: \n");
+        printf("1.price low to high\n");
+        printf("2.price high to low\n");
+
+        int sortChoice = 0;
+        fflush(stdin);
+        while(sortChoice == 0 || sortChoice > 2) {
+            printf("Choose option: ");
+            char buffer[100];
+            fgets(buffer, 100, stdin);
+            sortChoice = atoi(buffer);
+            if(sortChoice == 0 || sortChoice > 2) {
+                printf("Choose an valid option.\n");
+            }
+        }
+        return searchResults(conn, table ,brand, processorBrand , sortChoice ,head);
       }
     return head;
 }

@@ -8,22 +8,8 @@
 
 struct cart * addItem(int id, double price, char name[25], char prodName[25], int qty, struct cart *head);
 
-struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char processorBrand[25], struct cart * head) {
-    printf("Sort by: \n");
-    printf("1.price low to high\n");
-    printf("2.price high to low\n");
-
-    int sortChoice = 0;
-    fflush(stdin);
-    while(sortChoice == 0 || sortChoice > 2) {
-        printf("Choose option: ");
-        char buffer[100];
-        fgets(buffer, 100, stdin);
-        sortChoice = atoi(buffer);
-        if(sortChoice == 0 || sortChoice > 2) {
-            printf("Choose an valid option.\n");
-        }
-    }
+struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char processorBrand[25], int sortChoice, struct cart * head) {
+    
 
     char sort[100];
     if(sortChoice == 1) {
