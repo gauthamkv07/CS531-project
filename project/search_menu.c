@@ -8,6 +8,8 @@
 
 struct cart * searchResults(MYSQL *conn,char product[25], char brand[25],char processorBrand[25], struct cart * head);
 
+struct cart * searchCameraResults(MYSQL *conn , char product[25], char brand[25],char cameraType[25], struct cart * head);
+
 struct cart * searchLaptopBrands(MYSQL *conn , struct cart * head, char table[25], char brand[25]);
 
 struct cart * searchCameraBrands(MYSQL *conn , struct cart * head, char table[25], char brand[25]);
@@ -208,7 +210,7 @@ struct cart * searchCameraBrands(MYSQL *conn , struct cart * head, char table[25
             }
         }
         strcpy(cameraType, cameraTypes[choice - 1]);
-        return searchResults(conn, table ,brand, cameraType ,head);
+        return searchCameraResults(conn, table ,brand, cameraType ,head);
       }
     return head;
 }
