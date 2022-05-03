@@ -55,7 +55,7 @@ void printCart(struct cart * head) {
     struct cart *temp = head;
 
         //printing cart
-        printf("                 CART                     \n");
+        printf("\nCART                     \n\n");
         printf("ind    name                                                                                      qty   price\n");
 
         int index = 1;
