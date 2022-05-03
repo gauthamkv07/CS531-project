@@ -9,11 +9,33 @@
 struct cart * addItem(int id, double price, char name[25], char prodName[25], int qty, struct cart *head);
 
 struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char processorBrand[25], struct cart * head) {
+    printf("Sort by: \n");
+    printf("1.price low to high\n");
+    printf("2.price high to low");
+
+    int sortChoice = 0;
+    char buff[100];
+    while(sortChoice == 0 || sortChoice > 2) {
+        printf("Choose option: ");
+        fgets(buff, 100, stdin);
+        sortChoice = atoi(buff);
+        if(sortChoice == 0 || sortChoice > 2) {
+            printf("Choose an valid option.\n");
+        }
+    }
+
+    char sort[5];
+    if(sortChoice == 1) {
+        strcpy(sort,"asc");
+    } else {
+        strcpy(sort,"desc");
+    }
+
     printf("product : %s , brand: %s \n");
     printf("Search results: \n");
 
     char query[500];
-    sprintf(query, "SELECT * FROM %s WHERE brandName = \"%s\" and processorBrand = \"%s\"", product, brand ,processorBrand);
+    sprintf(query, "SELECT * FROM %s WHERE brandName = \"%s\" and processorBrand = \"%s\" order by price %s", product, brand ,processorBrand,sort);
 
     if (mysql_query(conn, query)) {
         connection_error(conn);
