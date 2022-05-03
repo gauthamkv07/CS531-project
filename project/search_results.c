@@ -76,7 +76,7 @@ struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char 
                 printf(" %-5d %-10s %-14s %-14s %-11s %-16s %-10s %-10s %-13s %-10s \n", index,brandName[index-1], processorBrand[index-1],processorModel[index-1],graphicCardBrand[index-1],graphicCardModel[index-1],operatingSystem[index-1],RAM[index-1],storage[index-1],price[index-1]);
                 index++;
             }
-            printf("%d. Back to main menu\n\n", index);
+            printf(" %d. Back to main menu\n\n", index);
 
             int choice = 0;
             char buff[100];
