@@ -49,7 +49,7 @@ struct cart * searchRefrigeratorsResults(MYSQL *conn , char product[25], char br
             strncpy(height[index-1], row[6], 25);
             strncpy(depth[index-1], row[7], 25);
             strncpy(price[index-1], row[8], 25);
-            printf(" %-5d %-10s %-11s %-10s %-12s %-16s \n", index,brandName[index-1], ModelNumber[index-1],doorStyle[index-1],color[index-1],price[index -1]);
+            printf(" %-5d %-10s %-11s %-10s %-11s %-16s \n", index,brandName[index-1], ModelNumber[index-1],doorStyle[index-1],color[index-1],price[index -1]);
             index++;
             while (row = mysql_fetch_row(result)) {
                 strncpy(id[index-1], row[0], 2);
@@ -61,7 +61,7 @@ struct cart * searchRefrigeratorsResults(MYSQL *conn , char product[25], char br
                 strncpy(height[index-1], row[6], 25);
                 strncpy(depth[index-1], row[7], 25);
                 strncpy(price[index-1], row[8], 25);
-                printf(" %-5d %-10s %-11s %-10s %-12s %-16s \n", index,brandName[index-1], ModelNumber[index-1],doorStyle[index-1],color[index-1],price[index -1]);
+                printf(" %-5d %-10s %-11s %-10s %-11s %-16s \n", index,brandName[index-1], ModelNumber[index-1],doorStyle[index-1],color[index-1],price[index -1]);
                 index++;
             }
             printf("%d. Back to main menu\n\n", index);
