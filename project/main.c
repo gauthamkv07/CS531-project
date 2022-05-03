@@ -184,6 +184,7 @@ void main() {
                 break;
             case 2: 
                 head = searchMenu(conn,head);
+                choice = 0;
                 break;
             case 3:
                 shoppingCart(head);
