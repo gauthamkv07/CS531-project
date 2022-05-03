@@ -189,8 +189,8 @@ int insert_laptop(MYSQL *conn){
 
     printf("please input the processorBrand within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
+    // getchar();
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -202,8 +202,7 @@ int insert_laptop(MYSQL *conn){
 
     printf("please input the processorModel within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -214,8 +213,7 @@ int insert_laptop(MYSQL *conn){
 
     printf("please input the graphicCardBrand within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -226,8 +224,7 @@ int insert_laptop(MYSQL *conn){
 
     printf("please input the graphicCardModel within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -238,8 +235,7 @@ int insert_laptop(MYSQL *conn){
 
     printf("please input the operatingSystem within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -250,8 +246,7 @@ int insert_laptop(MYSQL *conn){
 
     printf("please input the RAM like 16GB: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -262,8 +257,7 @@ int insert_laptop(MYSQL *conn){
 
     printf("please input the storage like 500GB: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -302,8 +296,7 @@ int insert_camera(MYSQL *conn){
     // ask user for the struct info
     printf("please input the brandName within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -314,8 +307,7 @@ int insert_camera(MYSQL *conn){
 
     printf("please input the ModelNumber within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -326,8 +318,7 @@ int insert_camera(MYSQL *conn){
 
     printf("please input the cameraType within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -338,8 +329,7 @@ int insert_camera(MYSQL *conn){
 
     printf("please input the color within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -350,8 +340,7 @@ int insert_camera(MYSQL *conn){
 
     printf("please input the sensorType (COMS, Live MOS) within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -362,8 +351,7 @@ int insert_camera(MYSQL *conn){
 
     printf("please input the sensorSize (Four Thirds System, APS-C) within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -374,8 +362,7 @@ int insert_camera(MYSQL *conn){
 
     printf("please input the effectivePixels (16.1 megapixels) within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -386,8 +373,7 @@ int insert_camera(MYSQL *conn){
 
     printf("please input the storage like 500GB: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -455,8 +441,7 @@ int insert_phone(MYSQL *conn){
     // ask user for the struct info
     printf("please input the brandName within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -467,8 +452,7 @@ int insert_phone(MYSQL *conn){
 
     printf("please input the ModelNumber within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -479,8 +463,7 @@ int insert_phone(MYSQL *conn){
 
     printf("please input the storage (500gb) within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -491,8 +474,7 @@ int insert_phone(MYSQL *conn){
 
     printf("please input the color: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -550,8 +532,7 @@ int insert_watch(MYSQL *conn){
     // ask user for the struct info
     printf("please input the brandName within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -562,8 +543,7 @@ int insert_watch(MYSQL *conn){
 
     printf("please input the ModelNumber within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -574,8 +554,7 @@ int insert_watch(MYSQL *conn){
 
     printf("please input the type (mechanical, quartz, automatical) within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -586,8 +565,7 @@ int insert_watch(MYSQL *conn){
 
     printf("please input the color: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -635,8 +613,7 @@ int insert_refrigerator(MYSQL *conn){
     // ask user for the struct info
     printf("please input the brandName within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -647,8 +624,7 @@ int insert_refrigerator(MYSQL *conn){
 
     printf("please input the ModelNumber within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -659,8 +635,7 @@ int insert_refrigerator(MYSQL *conn){
 
     printf("please input the doorStyle (frech-door, side-by-side) within 24 characters long: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
@@ -671,8 +646,7 @@ int insert_refrigerator(MYSQL *conn){
 
     printf("please input the color: \n");
     // try to get an user input string 
-    scanf("%24s",buffer);
-    getchar();
+    scanf("%[^\n]%*c",buffer);
     // add ,' ' to the string
     processing[0] = '\0';
     strcat(processing, ",");
