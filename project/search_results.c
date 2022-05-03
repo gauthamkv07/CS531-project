@@ -15,27 +15,27 @@ struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char 
 
     int sortChoice = 0;
     char buff[100];
-    while(sortChoice == 0 || sortChoice > 2) {
-        printf("Choose option: ");
-        fgets(buff, 100, stdin);
-        sortChoice = atoi(buff);
-        if(sortChoice == 0 || sortChoice > 2) {
-            printf("Choose an valid option.\n");
-        }
-    }
-
-    // char sort[100];
-    // if(sortChoice == 1) {
-    //     strcpy(sort,"asc");
-    // } else {
-    //     strcpy(sort,"desc");
+    // while(sortChoice == 0 || sortChoice > 2) {
+    //     printf("Choose option: ");
+    //     fgets(buff, 100, stdin);
+    //     sortChoice = atoi(buff);
+    //     if(sortChoice == 0 || sortChoice > 2) {
+    //         printf("Choose an valid option.\n");
+    //     }
     // }
+
+    char sort[100];
+    if(sortChoice == 1) {
+        strcpy(sort,"asc");
+    } else {
+        strcpy(sort,"desc");
+    }
 
     printf("product : %s , brand: %s \n");
     printf("Search results: \n");
 
     char query[500];
-    sprintf(query, "SELECT * FROM %s WHERE brandName = \"%s\" and processorBrand = \"%s\" order by price desc", product, brand ,processorBrand);
+    sprintf(query, "SELECT * FROM %s WHERE brandName = \"%s\" and processorBrand = \"%s\" order by price %s", product, brand ,processorBrand,sort);
 
     if (mysql_query(conn, query)) {
         connection_error(conn);
