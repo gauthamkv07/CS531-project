@@ -32,12 +32,13 @@ void shoppingCart(struct cart *head) {
             switch (choice)
             {
             case 1:
-                printf("\nOrder placed successfully\n");
+                printf("\nOrder placed successfully\n\n");
                 printBill(head, total, tax);
                 total = 0; tax = 0;
                 head->itemId = -1;
                 return;
             case 2:
+                printf("\nCart cleared\n\n");
                 head->itemId = -1;
                 return;
             case 3:
