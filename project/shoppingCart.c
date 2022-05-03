@@ -42,14 +42,14 @@ void shoppingCart(struct cart *head) {
             case 2:
                 printf("Choose iitem to edit: ");
                 int updateChoice = 0;
+                char buffer[100];
                 while(updateChoice == 0 || updateChoice >= index) {
-                    fgets(buff, 100, stdin);
+                    fgets(buffer, 100, stdin);
                     updateChoice = atoi(buff);
                     if(updateChoice == 0 || updateChoice >= index) {
                         printf("Not an valid option\n");
                     }
                     index = printCart(head);
-                    printShoppingCartMenu();
                 }
                 break;
             case 3:
