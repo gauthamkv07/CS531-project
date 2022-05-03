@@ -6,7 +6,7 @@
 #include "admin_menu.h"
 #include "shoppingCart.h"
 
-struct cart * addItem(int id,  double price, char name[25], int qty, struct cart *head);
+struct cart * addItem(int id, double price, char name[25], char prodName[25], int qty, struct cart *head);
 
 struct cart * searchRefrigeratorsResults(MYSQL *conn , char product[25], char brand[25],char doorStyle[25], struct cart * head) {
     printf("product : %s , brand: %s \n");
@@ -79,7 +79,7 @@ struct cart * searchRefrigeratorsResults(MYSQL *conn , char product[25], char br
             if(choice < index) {
                 int itemId = atoi(id[choice-1]);
                 float itemPrice = atof(price[choice-1]);
-                return addItem(itemId,itemPrice,  product, 1, head);
+                return addItem(itemId,itemPrice,  product, product ,1, head);
             }
         }
     }

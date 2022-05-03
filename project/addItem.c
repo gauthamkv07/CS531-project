@@ -3,11 +3,12 @@
 #include<stdlib.h>
 #include "shoppingCart.h"
 
-struct cart * addItem(int id, double price, char name[25], int qty, struct cart *head){
+struct cart * addItem(int id, double price, char name[25], char prodName[25], int qty, struct cart *head){
     if(head == NULL || head->itemId == -1) {
         head = (struct cart *)malloc(sizeof(struct cart));
         head->itemId = id;
         strcpy(head->name,name);
+        strcpy(head->prodName, prodName);
         head->price = price;
         head->qty = qty;
         head->next = NULL;
@@ -32,6 +33,7 @@ struct cart * addItem(int id, double price, char name[25], int qty, struct cart 
         struct cart *temp = (struct cart *)malloc(sizeof(struct cart));
         temp->itemId = id;
         strcpy(temp->name,name);
+        strcpy(temp->prodName, prodName);
         temp->price = price;
         temp->qty = qty;
         temp->next = NULL;
