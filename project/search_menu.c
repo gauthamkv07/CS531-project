@@ -6,7 +6,7 @@
 #include "admin_menu.h"
 #include "shoppingCart.h"
 
-struct cart * searchResults(MYSQL *conn,char product[25], char brand[25], struct cart * head);
+struct cart * searchResults(MYSQL *conn,char product[25], char brand[25],char processorBrand[25], struct cart * head);
 
 struct cart * searchLaptopBrands(MYSQL *conn , struct cart * head, char table[25], char brand[25]);
 
@@ -154,7 +154,7 @@ struct cart * searchLaptopBrands(MYSQL *conn , struct cart * head, char table[25
             }
         }
         strcpy(processorBrand, processorBrands[choice - 1]);
-        return searchResults(conn, table ,brand,head);
+        return searchResults(conn, table ,brand, processorBrand ,head);
       }
     return head;
 }
