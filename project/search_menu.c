@@ -39,7 +39,9 @@ void searchMenu(MYSQL *conn) {
     fgets(buff, 100, stdin);
     choice = atoi(buff);
     if(choice <index){
-        strcat("SELECT * FROM ", tables[choice-1]);
+        char src[50];
+        strcpy(src, "SELECT * FROM ");
+        strcat(src , tables[choice-1]);
         // printf("%s\n",query);
     }
 }
