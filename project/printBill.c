@@ -19,8 +19,8 @@ void printBill(struct cart *head,double total,double tax) {
             index++;
         }
         fprintf(fp, "\n");
-        fprintf(fp,"tax :                                                                                                 %.2f\n", tax);
-        fprintf(fp,"total :                                                                                               %.2f\n", total);
+        fprintf(fp,"tax :                                                                                                  %.2f\n", tax);
+        fprintf(fp,"total :                                                                                                %.2f\n", total);
 
         fprintf(fp,"\n        *********THANK YOU*********");
 
