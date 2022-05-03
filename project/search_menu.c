@@ -114,15 +114,15 @@ struct cart * searchMenu(MYSQL *conn, struct cart *head) {
 struct cart * searchLaptopBrands(MYSQL *conn , struct cart * head, char table[25], char brand[25]) {
     char query[500];
     sprintf(query, "select distinct processorBrand from %s where brandName = \"%s\"", table, brand);
-    MYSQL_RES *result = mysql_store_result(conn);
-    if (!result) {
-        printf("Couldn't get results set: %s\n", mysql_error(conn));
-        return head;
-    }
     if (mysql_query(conn, query)) {
         connection_error(conn);
         return head;
     } else {
+      MYSQL_RES *result = mysql_store_result(conn);
+        if (!result) {
+            printf("Couldn't get results set: %s\n", mysql_error(conn));
+            return head;
+        }
       MYSQL_ROW row = mysql_fetch_row(result);
       if(!row){
         printf("This product is not available right now. \n\n");
