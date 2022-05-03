@@ -10,7 +10,7 @@ struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char 
 
 struct cart * searchCameraResults(MYSQL *conn , char product[25], char brand[25],char cameraType[25], int sortChoice,struct cart * head);
 
-struct cart * searchRefrigeratorsResults(MYSQL *conn , char product[25], char brand[25],char doorStyle[25], struct cart * head);
+struct cart * searchRefrigeratorsResults(MYSQL *conn , char product[25], char brand[25], char doorStyle[25], int sortChoice,struct cart * head);
 
 struct cart * searchPhonesResults(MYSQL *conn , char product[25], char brand[25], struct cart * head);
 
@@ -309,7 +309,25 @@ struct cart * searchRefrigeratorsBrands(MYSQL *conn , struct cart * head, char t
             }
         }
         strcpy(doorStyle, doorStyles[choice - 1]);
-        return searchRefrigeratorsResults(conn, table ,brand, doorStyle ,head);
+
+        printf("Sort by: \n");
+        printf("1.price low to high\n");
+        printf("2.price high to low\n");
+
+        int sortChoice = 0;
+        fflush(stdin);
+        while(sortChoice == 0 || sortChoice > 2) {
+            printf("Choose option: ");
+            char buffer[100];
+            fgets(buffer, 100, stdin);
+            sortChoice = atoi(buffer);
+            if(sortChoice == 0 || sortChoice > 2) {
+                printf("Choose an valid option.\n");
+            }
+        }
+        printf("\n");
+
+        return searchRefrigeratorsResults(conn, table ,brand, doorStyle, sortChoice, head);
       }
     return head;
 }

@@ -8,12 +8,19 @@
 
 struct cart * addItem(int id, double price, char name[25], char prodName[25], int qty, struct cart *head);
 
-struct cart * searchRefrigeratorsResults(MYSQL *conn , char product[25], char brand[25],char doorStyle[25], struct cart * head) {
+struct cart * searchRefrigeratorsResults(MYSQL *conn , char product[25], char brand[25], char doorStyle[25], int sortChoice,struct cart * head) {
+    char sort[100];
+    if(sortChoice == 1) {
+        strcpy(sort,"asc");
+    } else {
+        strcpy(sort,"desc");
+    }
+    
     printf("product : %s , brand: %s \n");
     printf("Search results: \n");
 
     char query[500];
-    sprintf(query, "SELECT * FROM %s WHERE brandName = \"%s\" and doorStyle = \"%s\"", product, brand ,doorStyle);
+    sprintf(query, "SELECT * FROM %s WHERE brandName = \"%s\" and doorStyle = \"%s\" order by price %s", product, brand ,doorStyle,sort);
 
     if (mysql_query(conn, query)) {
         connection_error(conn);
