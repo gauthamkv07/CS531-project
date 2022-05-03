@@ -24,18 +24,18 @@ struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char 
         }
     }
 
-    char sort[100];
-    if(sortChoice == 1) {
-        strcpy(sort,"asc");
-    } else {
-        strcpy(sort,"desc");
-    }
+    // char sort[100];
+    // if(sortChoice == 1) {
+    //     strcpy(sort,"asc");
+    // } else {
+    //     strcpy(sort,"desc");
+    // }
 
     printf("product : %s , brand: %s \n");
     printf("Search results: \n");
 
     char query[500];
-    sprintf(query, "SELECT * FROM %s WHERE brandName = \"%s\" and processorBrand = \"%s\" order by price %s", product, brand ,processorBrand,sort);
+    sprintf(query, "SELECT * FROM %s WHERE brandName = \"%s\" and processorBrand = \"%s\" order by price desc", product, brand ,processorBrand);
 
     if (mysql_query(conn, query)) {
         connection_error(conn);
