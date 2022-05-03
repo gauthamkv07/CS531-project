@@ -41,7 +41,7 @@ void searchMenu(MYSQL *conn) {
     if(choice <index){
         char src[50];
         strcpy(src, "SELECT * FROM ");
-        strcat(src , tables[choice-1]);
-        // printf("%s\n",query);
+        strcpy(query, strcat(src , tables[choice-1]));
+        printf("%s\n",query);
     }
 }
