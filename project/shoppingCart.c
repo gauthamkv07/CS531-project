@@ -7,6 +7,8 @@ double total = 0,tax = 0;
 
 void printBill(struct cart *head,double total,double tax);
 
+void printCart(struct cart * head);
+
 void printShoppingCartMenu() {
     printf("1.Place Order\n");
     printf("2.Go Back\n");
@@ -16,24 +18,7 @@ void shoppingCart(struct cart *head) {
     if(head == NULL || head->itemId == -1) {
         printf("Cart is Empty\n");
     } else {
-        struct cart *temp = head;
-
-        //printing cart
-        printf("                 CART                     \n");
-        printf("ind    name                                                                                      qty   price\n");
-
-        int index = 1;
-        while(temp!=NULL) {
-            total += temp->price;
-            printf("%d    %-90s  %d     %-10.2f\n", index, temp->prodName,  temp->qty, temp->price);
-            temp = temp -> next;
-            index++;
-        }
-        printf("\n");
-        tax += total * 0.06;
-        total += total * 0.06;
-        printf("tax :                                                                                                  %.2f\n", tax);
-        printf("total :                                                                                                %.2f\n", total);
+        printCart(head);
 
         //print bill
         int choice = 0;
@@ -59,4 +44,25 @@ void shoppingCart(struct cart *head) {
             }
         }
     }
+}
+
+void printCart(struct cart * head) {
+    struct cart *temp = head;
+
+        //printing cart
+        printf("                 CART                     \n");
+        printf("ind    name                                                                                      qty   price\n");
+
+        int index = 1;
+        while(temp!=NULL) {
+            total += temp->price;
+            printf("%d    %-90s  %d     %-10.2f\n", index, temp->prodName,  temp->qty, temp->price);
+            temp = temp -> next;
+            index++;
+        }
+        printf("\n");
+        tax += total * 0.06;
+        total += total * 0.06;
+        printf("tax :                                                                                                  %.2f\n", tax);
+        printf("total :                                                                                                %.2f\n", total);
 }
