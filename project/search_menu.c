@@ -99,51 +99,8 @@ struct cart * searchMenu(MYSQL *conn, struct cart *head) {
                     strcpy(brand, brands[choice - 1]);
 
                     if(choice < index) {
-                        sprintf(query, "select distinct processorBrand from %s where brandName = \"%s\"", table, brand);
-                        MYSQL_RES *result = mysql_store_result(conn);
-                        if (!result) {
-                            printf("Couldn't get results set: %s\n", mysql_error(conn));
-                            return head;
-                        }
-                        if (mysql_query(conn, query)) {
-                            connection_error(conn);
-                            return head;
-                        } else {
-                            row = mysql_fetch_row(result);
-                            if(!row){
-                                printf("This product is not available right now. \n\n");
-                                return head;
-                            }
-                            index = 1;
-                            printf("processorBrands: \n");
-                            char processorBrands[12][25];
-                            char processorBrand[25];
-                            printf("%d.", index);
-                            strncpy(processorBrands[index-1],row[0],25);
-                            puts(row[0]);
-                            index++;
-                            while (row = mysql_fetch_row(result)) {
-                                printf("%d.", index);
-                                strncpy(processorBrands[index-1],row[0],25);
-                                puts(row[0]);
-                                index++;
-                            }
-                            printf("%d.Back to the main menu\n\n", index);
-
-                            choice = 0;
-                            while(choice > index+1 || choice == 0) {
-                                printf("Choose processor brand: ");
-                                fgets(buff, 100, stdin);
-                                choice = atoi(buff);
-                                if(choice > index + 1 || choice == 0) {
-                                    printf("Choose an valid option.\n");
-                                }
-                            }
-                            strcpy(processorBrand, processorBrands[choice - 1]);
                             return searchResults(conn, table ,brands[choice-1],head);
-                        }
                     }
-                } 
             } 
         }
     }
