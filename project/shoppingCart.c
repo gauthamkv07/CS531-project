@@ -20,11 +20,11 @@ void shoppingCart(struct cart *head) {
 
         //printing cart
         printf("                 CART                     \n");
-        printf("id    name                                qty   price\n");
+        printf("id    name                                              qty   price\n");
 
         while(temp!=NULL) {
             total += temp->price;
-            printf("%d    %-100s  %d    %-10.2f\n", temp->itemId, temp->prodName,  temp->qty, temp->price);
+            printf("%d    %-50s  %d    %-10.2f\n", temp->itemId, temp->prodName,  temp->qty, temp->price);
             temp = temp -> next;
         }
         tax += total * 0.06;
