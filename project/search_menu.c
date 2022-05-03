@@ -99,8 +99,8 @@ struct cart * searchMenu(MYSQL *conn, struct cart *head) {
 
                     if(choice < index) {
                         sprintf(query, "select distinct processorBrand from %s where brandName = \"%s\"", table, brand);
-                        MYSQL_RES *result = mysql_store_result(conn);
-                        if (!result) {
+                        MYSQL_RES *brandResult = mysql_store_result(conn);
+                        if (!brandResult) {
                             printf("Couldn't get results set: %s\n", mysql_error(conn));
                             return head;
                         }
@@ -108,7 +108,7 @@ struct cart * searchMenu(MYSQL *conn, struct cart *head) {
                             connection_error(conn);
                             return head;
                         } else {
-                            row = mysql_fetch_row(result);
+                            row = mysql_fetch_row(brandResult);
                             if(!row){
                                 printf("This product is not available right now. \n\n");
                                 return head;
