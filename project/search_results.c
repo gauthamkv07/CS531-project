@@ -82,7 +82,17 @@ struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char 
             if(choice < index) {
                 int itemId = atoi(id[choice-1]);
                 float itemPrice = atof(price[choice-1]);
-                return addItem(itemId,itemPrice,  product, product ,1, head);
+                char prodName[200];
+                strcpy(prodName, strcat(product,"("));
+                strcpy(prodName, strcat(prodName,processorBrand[choice-1]));
+                strcpy(prodName, strcat(prodName,","));
+                strcpy(prodName, strcat(prodName,processorModel[choice-1]));
+                strcpy(prodName, strcat(prodName,","));
+                strcpy(prodName, strcat(prodName,RAM[choice-1]));
+                strcpy(prodName, strcat(prodName,","));
+                strcpy(prodName, strcat(prodName,storage[choice-1]));
+                strcpy(prodName, strcat(prodName,")"));
+                return addItem(itemId,itemPrice,  product, prodName ,1, head);
             }
         }
     }
