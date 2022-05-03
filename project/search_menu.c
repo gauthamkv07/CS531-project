@@ -21,7 +21,7 @@ void searchMenu(MYSQL *conn) {
             printf("nothing to display, database is empty. \n\n");
             return;
         }
-        printf("%d.", index);
+        printf("\n%d.", index);
         strncpy(tables[index-1],row[0],25);
         puts(row[0]);
         index++;
@@ -38,9 +38,15 @@ void searchMenu(MYSQL *conn) {
     int choice = 0;
     char buff[100];
     char query[500];
-    printf("choose option: ");
-    fgets(buff, 100, stdin);
-    choice = atoi(buff);
+    while(choice > index+1 || choice == 0) {
+        printf("Choose option: ");
+        fgets(buff, 100, stdin);
+        choice = atoi(buff);
+        if(choice > index + 1) {
+            printf("Choose an valid option.\n");
+        }
+    }
+    
     if(choice <index){
         char selectQuery[50];
         strcpy(selectQuery, "SELECT distinct brandName FROM ");
@@ -60,7 +66,7 @@ void searchMenu(MYSQL *conn) {
                 }
                 char brands[12][25];
                 index = 1;
-                printf("Brands: \n");
+                printf("\nBrands: \n");
                 printf("%d.", index);
                 strncpy(tables[index-1],row[0],25);
                 puts(row[0]);
