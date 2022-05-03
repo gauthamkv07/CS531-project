@@ -19,6 +19,7 @@ struct cart * searchResults(MYSQL *conn , char product[25], char brand[25],char 
     while(sortChoice == 0 || sortChoice > 2) {
         printf("Choose option: ");
         fgets(buff, 100, stdin);
+        printf("%s\n",buff);
         sortChoice = atoi(buff);
         if(sortChoice == 0 || sortChoice > 2) {
             printf("Choose an valid option.\n");
