@@ -28,7 +28,7 @@ void searchMenu(MYSQL *conn) {
             puts(row[0]);
             index++;
         }
-        printf("%d. Back to the main menu\n\n", index);
+        printf("%d.Back to the main menu\n\n", index);
         mysql_free_result(result);
     }
 
@@ -39,7 +39,7 @@ void searchMenu(MYSQL *conn) {
     fgets(buff, 100, stdin);
     choice = atoi(buff);
     if(choice <index){
-        strcpy(query, strcat("SELECT * FROM ", tables[index-1]));
+        strcpy(query, strcat("SELECT * FROM ", tables[choice-1]));
         printf("%s\n",query);
     }
 }
