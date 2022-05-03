@@ -21,6 +21,10 @@ void searchMenu(MYSQL *conn) {
             printf("nothing to display, database is empty. \n\n");
             return;
         }
+        printf("%d.", index);
+        strncpy(tables[index-1],row[0],25);
+        puts(row[0]);
+        index++;
         while (row = mysql_fetch_row(result)) {
             printf("%d.", index);
             strncpy(tables[index-1],row[0],25);
@@ -57,6 +61,10 @@ void searchMenu(MYSQL *conn) {
                 char brands[12][25];
                 index = 1;
                 printf("Brands: \n");
+                printf("%d.", index);
+                strncpy(tables[index-1],row[0],25);
+                puts(row[0]);
+                index++;
                 while (row = mysql_fetch_row(result)) {
                     printf("%d.", index);
                     strncpy(brands[index-1],row[0],25);
