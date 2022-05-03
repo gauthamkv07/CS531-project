@@ -101,8 +101,7 @@ struct cart * searchMenu(MYSQL *conn, struct cart *head) {
                     strcpy(brand, brands[choice - 1]);
 
                     if(choice < index) {
-                            searchLaptopBrands(conn, head, table,brand);
-                            // return searchResults(conn, table ,brands[choice-1],head);
+                            return searchLaptopBrands(conn, head, table,brand);
                     }
                 }
             } 
@@ -155,6 +154,7 @@ struct cart * searchLaptopBrands(MYSQL *conn , struct cart * head, char table[25
             }
         }
         strcpy(processorBrand, processorBrands[choice - 1]);
+        return searchResults(conn, table ,brands[choice-1],head);
       }
     return head;
 }
