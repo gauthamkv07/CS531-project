@@ -76,7 +76,21 @@ struct cart * searchPhonesResults(MYSQL *conn , char product[25], char brand[25]
             if(choice < index) {
                 int itemId = atoi(id[choice-1]);
                 float itemPrice = atof(price[choice-1]);
-                return addItem(itemId,itemPrice,  product, product ,1, head);
+                char prodName[200];
+                strcpy(prodName, strcat(product,"("));
+                strcpy(prodName, strcat(prodName,"brand: "));
+                strcpy(prodName, strcat(prodName,brandName[choice-1]));
+                strcpy(prodName, strcat(prodName,","));
+                strcpy(prodName, strcat(prodName,"ModelNumber: "));
+                strcpy(prodName, strcat(prodName,ModelNumber[choice-1]));
+                strcpy(prodName, strcat(prodName,","));
+                strcpy(prodName, strcat(prodName,"color: "));
+                strcpy(prodName, strcat(prodName,color[choice-1]));
+                strcpy(prodName, strcat(prodName,","));
+                strcpy(prodName, strcat(prodName,"storage: "));
+                strcpy(prodName, strcat(prodName,storage[choice-1]));
+                strcpy(prodName, strcat(prodName,")"));
+                return addItem(itemId,itemPrice,  product, prodName ,1, head);
             }
         }
     }
