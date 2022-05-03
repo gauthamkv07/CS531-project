@@ -38,13 +38,13 @@ void searchResults(MYSQL *conn , char product[25], char brand[25]) {
             strncpy(id[index-1], row[0], 2);
             strncpy(brandName[index-1], row[1], 25);
             strncpy(price[index-1], row[2], 25);
-            printf("%-5s %-25s %-10s \n", id,brandName,price);
+            printf("%-5d %-25s %-10s \n", index,brandName,price);
             index++;
             while (row = mysql_fetch_row(result)) {
                 strncpy(id[index-1], row[0], 2);
                 strncpy(brandName[index-1], row[1], 25);
                 strncpy(price[index-1], row[2], 25);
-                printf("%-5s %-25s %-10s \n", id,brandName,price);
+                printf("%-5s %-25s %-10s \n", index,brandName,price);
                 index++;
             }
         }
