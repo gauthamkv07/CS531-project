@@ -10,9 +10,13 @@ struct cart * searchResults(MYSQL *conn,char product[25], char brand[25],char pr
 
 struct cart * searchCameraResults(MYSQL *conn , char product[25], char brand[25],char cameraType[25], struct cart * head);
 
+struct cart * searchRefrigeratorsResults(MYSQL *conn , char product[25], char brand[25],char doorStyle[25], struct cart * head);
+
 struct cart * searchLaptopBrands(MYSQL *conn , struct cart * head, char table[25], char brand[25]);
 
 struct cart * searchCameraBrands(MYSQL *conn , struct cart * head, char table[25], char brand[25]);
+
+struct cart * searchRefrigeratorsBrands(MYSQL *conn , struct cart * head, char table[25], char brand[25]);
 
 struct cart * searchMenu(MYSQL *conn, struct cart *head) {
     
@@ -109,6 +113,9 @@ struct cart * searchMenu(MYSQL *conn, struct cart *head) {
                         }
                         if(!strcmp(table,"laptops")) {
                             return searchLaptopBrands(conn, head, table,brand);
+                        }
+                        if(!strcmp(table, "refrigerators")) {
+                            return searchRefrigeratorsBrands(conn, head, table,brand);
                         }
                     }
                 }
@@ -215,3 +222,51 @@ struct cart * searchCameraBrands(MYSQL *conn , struct cart * head, char table[25
     return head;
 }
 
+struct cart * searchRefrigeratorsBrands(MYSQL *conn , struct cart * head, char table[25], char brand[25]) {
+    char query[500];
+    sprintf(query, "select distinct doorStyle from %s where brandName = \"%s\"", table, brand);
+    if (mysql_query(conn, query)) {
+        connection_error(conn);
+        return head;
+    } else {
+      MYSQL_RES *result = mysql_store_result(conn);
+        if (!result) {
+            printf("Couldn't get results set: %s\n", mysql_error(conn));
+            return head;
+        }
+      MYSQL_ROW row = mysql_fetch_row(result);
+      if(!row){
+        printf("This product is not available right now. \n\n");
+        return head;
+      }
+      int index = 1;
+      printf("doorStyles: \n");
+      char doorStyles[12][25];
+      char doorStyle[25];
+      printf("%d.", index);
+      strncpy(doorStyles[index-1],row[0],25);
+      puts(row[0]);
+      index++;
+      while (row = mysql_fetch_row(result)) {
+          printf("%d.", index);
+          strncpy(doorStyles[index-1],row[0],25);
+          puts(row[0]);
+          index++;
+      }
+      printf("%d.Back to the main menu\n\n", index);
+
+        int choice = 0;
+        char buff[100];
+        while(choice > index+1 || choice == 0) {
+            printf("Choose processor brand: ");
+            fgets(buff, 100, stdin);
+            choice = atoi(buff);
+            if(choice > index + 1 || choice == 0) {
+                printf("Choose an valid option.\n");
+            }
+        }
+        strcpy(doorStyle, doorStyles[choice - 1]);
+        return searchRefrigeratorsResults(conn, table ,brand, doorStyle ,head);
+      }
+    return head;
+}

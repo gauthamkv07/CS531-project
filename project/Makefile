@@ -2,7 +2,7 @@
 # Make File for run hw3 Program
 ##################################################
 
-OBJ = main.o admin_menu.o shoppingCart.o printBill.o addItem.o search_menu.o search_results.o search_camera_results.o
+OBJ = main.o admin_menu.o shoppingCart.o printBill.o addItem.o search_menu.o search_results.o search_camera_results.o search_refrigerator_results.o
 
 all: $(OBJ)
 	gcc -o all $(OBJ) `mysql_config --cflags --libs`
@@ -22,6 +22,8 @@ search_results.o:
 	gcc -c search_results.c `mysql_config --cflags --libs`
 search_camera_results.o:
 	gcc -c search_camera_results.c `mysql_config --cflags --libs`
+search_refrigerator_results.o:
+	gcc -c search_refrigerator_results.c `mysql_config --cflags --libs`
 clean:
 	rm -rf a.out
 	rm -rf all
