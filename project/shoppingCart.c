@@ -25,7 +25,7 @@ void shoppingCart(struct cart *head) {
         int index = 1;
         while(temp!=NULL) {
             total += temp->price;
-            printf("%d    %-90s  %d    %-10.2f\n", index, temp->prodName,  temp->qty, temp->price);
+            printf("%d    %-90s  %d     %-10.2f\n", index, temp->prodName,  temp->qty, temp->price);
             temp = temp -> next;
             index++;
         }
