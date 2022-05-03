@@ -105,7 +105,7 @@ int printCart(struct cart * head) {
         printf("\n");
         tax += total * 0.06;
         total += tax;
-        printf("tax :                                                                                  6%% sales tax   %.2f\n", tax);
+        printf("tax :                                                                                  6%% sales tax    %.2f\n", tax);
         printf("total :                                                                                                %.2f\n", total);
         return index;
 }
