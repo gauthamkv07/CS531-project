@@ -13,7 +13,7 @@ void printShoppingCartMenu() {
     printf("\nCart menu:\n");
     printf("1.Place Order\n");
     printf("2.update cart item\n");
-    printf("3.Delete cart\n");
+    printf("3.Delete cart item\n");
     printf("4.Clear cart\n");
     printf("5.Go Back\n");
 }
