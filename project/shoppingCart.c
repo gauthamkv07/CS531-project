@@ -26,6 +26,8 @@ void shoppingCart(struct cart *head) {
         //print bill
         int choice = 0;
         char buff[100];
+        int updateChoice = 0;
+        char buffer[100];
         while(choice != 4) {
             printShoppingCartMenu();
             printf("Enter your choice:");
@@ -40,8 +42,6 @@ void shoppingCart(struct cart *head) {
                 head->itemId = -1;
                 return;
             case 2:
-                int updateChoice = 0;
-                char buffer[100];
                 while(updateChoice == 0 || updateChoice >= index) {
                     printf("Choose iitem to edit: ");
                     fgets(buffer, 100, stdin);
@@ -51,6 +51,7 @@ void shoppingCart(struct cart *head) {
                     }
                 }
                 index = printCart(head);
+                updateChoice = 0;
                 break;
             case 3:
                 printf("\nCart cleared\n\n");
