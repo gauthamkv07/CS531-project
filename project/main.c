@@ -184,7 +184,7 @@ void main() {
                 admin_choice = 0;
                 break;
             case 2: 
-                searchMenu();
+                searchMenu(conn);
                 break;
             case 3:
                 shoppingCart(head);
