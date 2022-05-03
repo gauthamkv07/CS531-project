@@ -17,7 +17,7 @@ printBill.o:
 addItem.o:
 	gcc -c addItem.c
 search_menu.o:
-	gcc -c search_menu.c
+	gcc -c search_menu.c `mysql_config --cflags --libs`
 clean:
 	rm -rf a.out
 	rm -rf all
