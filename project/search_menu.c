@@ -42,7 +42,7 @@ void searchMenu(MYSQL *conn) {
         printf("Choose option: ");
         fgets(buff, 100, stdin);
         choice = atoi(buff);
-        if(choice > index + 1) {
+        if(choice > index + 1 || choice == 0) {
             printf("Choose an valid option.\n");
         }
     }
@@ -79,9 +79,14 @@ void searchMenu(MYSQL *conn) {
                 }
                 printf("%d.Back to the main menu\n\n", index);
 
-                printf("choose brand: ");
-                fgets(buff, 100, stdin);
-                choice = atoi(buff);
+                while(choice > index+1 || choice == 0) {
+                    printf("Choose brand: ");
+                    fgets(buff, 100, stdin);
+                    choice = atoi(buff);
+                    if(choice > index + 1 || choice == 0) {
+                        printf("Choose an valid option.\n");
+                    }
+                }
                 if(choice < index) {
                     printf("okay\n");
                 }
