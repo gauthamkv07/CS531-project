@@ -83,7 +83,7 @@ struct cart * searchCameraResults(MYSQL *conn , char product[25], char brand[25]
                 printf(" %-5d %-10s %-11s %-11s %-13s %-16s \n", index,brandName[index-1], ModelNumber[index-1],cameraType[index-1],storage[index-1],price[index -1]);
                 index++;
             }
-            printf("%d. Back to main menu\n\n", index);
+            printf(" %d. Back to main menu\n\n", index);
 
             int choice = 0;
             char buff[100];
