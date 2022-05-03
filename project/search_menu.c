@@ -183,8 +183,8 @@ struct cart * searchCameraBrands(MYSQL *conn , struct cart * head, char table[25
       }
       int index = 1;
       printf("cameraTypes: \n");
-      char cameraType[12][25];
-      char cameraTypes[25];
+      char cameraTypes[12][25];
+      char cameraType[25];
       printf("%d.", index);
       strncpy(cameraTypes[index-1],row[0],25);
       puts(row[0]);
