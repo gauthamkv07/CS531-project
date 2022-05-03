@@ -79,6 +79,7 @@ void searchMenu(MYSQL *conn) {
                 }
                 printf("%d.Back to the main menu\n\n", index);
 
+                choice = 0;
                 while(choice > index+1 || choice == 0) {
                     printf("Choose brand: ");
                     fgets(buff, 100, stdin);
