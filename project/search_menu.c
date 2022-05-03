@@ -98,8 +98,8 @@ struct cart * searchMenu(MYSQL *conn, struct cart *head) {
                     strcpy(brand, brands[choice - 1]);
 
                     if(choice < index) {
-                        return searchResults(conn, table ,brands[choice-1],head);
                         sprintf(query, "select distinct processorBrand from %s where brandName = \"%s\"", table, brand);
+                        return searchResults(conn, table ,brands[choice-1],head);
                         if (mysql_query(conn, query)) {
                             connection_error(conn);
                             return head;
