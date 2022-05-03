@@ -54,6 +54,7 @@ void shoppingCart(struct cart *head) {
                         while(qty <= 0 || qty > 5) {
                             printf("Enter qty: ");
                             fgets(qtyBuffer, 100, stdin);
+                            qty = atoi(qtyBuffer);
                             if(qty <= 0) {
                                 printf("Not an valid qty\n");
                             } else {
